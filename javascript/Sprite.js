@@ -94,3 +94,5 @@ function Sprite(positionX, positionY, imageUrl, isVisible, frameCount, isAnimate
 		
 					return true;
 				}
+
+				Sprite.prototype.update = function(){}
