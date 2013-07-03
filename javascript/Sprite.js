@@ -61,13 +61,12 @@ function Sprite(positionX, positionY, imageUrl, isVisible, frameCount, isAnimate
 						}
 						else {
 								canvasContext.drawImage(this.imageElement, (this.startAnimIndex + this.currentFrame) * this.Width , 0, this.Width, this.Height, this.x, this.y, (this.resolution * this.Width), (this.resolution * this.Height));
-								if (0 == (numberOfFrame) % speedController){	
+								if (0 == (speedVariables.numberOfFrame) % speedVariables.speedController){	
 									this.currentFrame = (++this.currentFrame) % this.frameThreshold;
-									
-								}
 							}
 					}	
 				}
+			}
 
 				Sprite.prototype.loadImage = function (image){
 
@@ -76,4 +75,22 @@ function Sprite(positionX, positionY, imageUrl, isVisible, frameCount, isAnimate
 					}else{
 						window.setTimeOut(self.loadImage(image),100);
 					}
+				}
+
+				Sprite.prototype.collidesWith = function(obj){
+
+					if ( this.x + this.Width < obj.x){
+						return false;
+					}
+					if ( this.x  > obj.x + obj.Width){
+						return false;
+					}
+					if (this.y - this.Height > obj.y ){
+						return false;
+					}
+					if ( this.y  < obj.y - obj.Height){
+						return false;
+					}
+		
+					return true;
 				}

@@ -1,4 +1,4 @@
-function ramp(positionX, positionY, imageUrl, isVisible, frameCount, isAnimated, speed){
+function Ramp(positionX, positionY, imageUrl, isVisible, frameCount, isAnimated, speed){
 	this.base 	= Sprite;
 	this.base(positionX, positionY, imageUrl, isVisible, frameCount, isAnimated);
 	
@@ -6,12 +6,11 @@ function ramp(positionX, positionY, imageUrl, isVisible, frameCount, isAnimated,
 	this.speedY = speed.y; 
 }
 
-ramp.prototype = Object.create(Sprite.prototype);
+Ramp.prototype = Object.create(Sprite.prototype);
 
 
-ramp.prototype.update = function(){
+Ramp.prototype.update = function(){
 
 	// to be implemented
-
-
+	this.y = ((this.y < (640 - this.speedY)) ? (this.y + this.speedY) : -this.Height);
 }
