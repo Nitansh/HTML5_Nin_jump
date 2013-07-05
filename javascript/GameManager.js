@@ -42,6 +42,11 @@ GameManager.prototype.clearScreen = function(){
 	
 }
 
+window.getInput = function(event){
+	console.log("touch happend");
+	spriteVariables.hero.onInput(event);
+}
+
 window.requestAnimFrame = (function(){
 					return  window.requestAnimationFrame ||
 							window.webkitRequestAnimationFrame ||
@@ -54,3 +59,4 @@ window.requestAnimFrame = (function(){
 				})();
 
 
+ window.addEventListener("onclick", window.getInput, false);
