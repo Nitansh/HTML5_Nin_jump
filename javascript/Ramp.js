@@ -1,6 +1,6 @@
-function Ramp(positionX, positionY, imageUrl, isVisible, frameCount, isAnimated, speed){
+function Ramp(positionX, positionY, imageUrl, isVisible, frameCount, rowCount, isAnimated, speed){
 	this.base 	= Sprite;
-	this.base(positionX, positionY, imageUrl, isVisible, frameCount, isAnimated);
+	this.base(positionX, positionY, imageUrl, isVisible, frameCount, rowCount, isAnimated);
 	
 	this.speedX = speed.x;
 	this.speedY = speed.y; 

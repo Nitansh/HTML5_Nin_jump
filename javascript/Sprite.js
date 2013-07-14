@@ -7,7 +7,7 @@
 
 *****************************************************************/
 
-function Sprite(positionX, positionY, imageUrl, isVisible, frameCount, isAnimated){
+function Sprite(positionX, positionY, imageUrl, isVisible, frameCount, rowcount, isAnimated){
 				
 					this.x                 = positionX;
 					this.y                 = positionY; 
@@ -19,6 +19,8 @@ function Sprite(positionX, positionY, imageUrl, isVisible, frameCount, isAnimate
 					this.isVisible         = isVisible;
 					this.resolution        = 1;
 					this.frameCount		   = frameCount;
+					this.rowcount		   = rowcount;
+					this.currentRowCount   = 0;
 					this.imageElement      = null;
 
 					if (isAnimated){
@@ -49,8 +51,8 @@ function Sprite(positionX, positionY, imageUrl, isVisible, frameCount, isAnimate
 					if (0 == this.Width)
 					{
 						this.Width  = this.isAnimated ? this.imageElement.width/this.frameCount : this.imageElement.width;
-						this.Height = this.imageElement.height; 
-						
+						this.Height = (0 != this.rowcount) ? this.imageElement.height/this.rowcount : this.imageElement.height; 
+						console.log(this.Height);
 					}
 
 					if (this.isVisible){
@@ -58,10 +60,16 @@ function Sprite(positionX, positionY, imageUrl, isVisible, frameCount, isAnimate
 							canvasContext.drawImage(this.imageElement, this.x, this.y, (this.resolution * this.Width), (this.resolution * this.Height));
 						}
 						else {
-								canvasContext.drawImage(this.imageElement, (this.startAnimIndex + this.currentFrame) * this.Width , 0, this.Width, this.Height, this.x, this.y, (this.resolution * this.Width), (this.resolution * this.Height));
+								canvasContext.drawImage(this.imageElement, (this.startAnimIndex + this.currentFrame) * this.Width , (this.currentRowCount * this.Height), this.Width, this.Height, this.x, this.y, (this.resolution * this.Width), (this.resolution * this.Height));
 								if (0 == (speedVariables.numberOfFrame) % speedVariables.speedController){	
 									this.currentFrame = (++this.currentFrame) % this.frameThreshold;
-							}
+							    }
+							    if (this.rowcount && !this.currentFrame){
+									this.currentRowCount = (++this.currentRowCount) % this.rowcount;
+									this.currentFrame == 0;
+								}
+
+
 					}	
 				}
 			}

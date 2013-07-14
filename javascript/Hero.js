@@ -1,9 +1,9 @@
 /*
 	Hard coding of the left and Right part should be removed
 */
-function Hero(positionX, positionY, imageUrl, isVisible, frameCount, isAnimated, speed){
+function Hero(positionX, positionY, imageUrl, isVisible, frameCount, rowCount, isAnimated, speed){
 	this.base 	= Sprite;
-	this.base(positionX, positionY, imageUrl, isVisible, frameCount, isAnimated);
+	this.base(positionX, positionY, imageUrl, isVisible, frameCount, rowCount, isAnimated);
 	this.animationId = 0;
 	this.speedX   = speed.x;
 	this.speedY   = speed.y; 
