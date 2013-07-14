@@ -5,8 +5,6 @@
 					class is the most basic class which will be inherited
 					by the all the objects used in the game.
 
-
-
 *****************************************************************/
 
 function Sprite(positionX, positionY, imageUrl, isVisible, frameCount, isAnimated){

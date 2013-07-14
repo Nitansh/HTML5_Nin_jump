@@ -1,3 +1,12 @@
+/***************************************************************************
+*
+*	Function Name :  onLoad
+*	Description   :  This is the overall starting point to the game.
+*	Input 		  :  Nothing
+*	Outputs 	  :  Overall Game
+*
+***************************************************************************/
+
 window.onload = function(){
 	
 	gameManager = new GameManager(spriteVariables);
