@@ -52,7 +52,6 @@ function Sprite(positionX, positionY, imageUrl, isVisible, frameCount, rowcount,
 					{
 						this.Width  = this.isAnimated ? this.imageElement.width/this.frameCount : this.imageElement.width;
 						this.Height = (0 != this.rowcount) ? this.imageElement.height/this.rowcount : this.imageElement.height; 
-						console.log(this.Height);
 					}
 
 					if (this.isVisible){

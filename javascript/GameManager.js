@@ -43,7 +43,6 @@ GameManager.prototype.clearScreen = function(){
 }
 
 window.getInput = function(event){
-	console.log("touch happend");
 	spriteVariables.hero.onInput(event);
 }
 
