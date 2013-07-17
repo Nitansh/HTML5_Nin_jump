@@ -9,16 +9,28 @@ function GameManager(spriteVariables){
 GameManager.prototype.paint = function() {
 	
 	this.clearScreen();
-
 	for (var spriteObject in this.spriteVariables){
-		this.spriteVariables[spriteObject].paint(this.context);
+		if (this.spriteVariables[spriteObject].length){
+					for (var ctr = 0; ctr < this.spriteVariables[spriteObject].length; ctr++){
+							this.spriteVariables[spriteObject][ctr].paint(this.context);
+					}
+		}else{
+			   this.spriteVariables[spriteObject].paint(this.context);			
+		 }
 	}
 }
 
 GameManager.prototype.update = function(){
 	speedVariables.numberOfFrame++;
 	for (var spriteObject in this.spriteVariables){
-		this.spriteVariables[spriteObject].update();
+		if (this.spriteVariables[spriteObject].length){
+				for (var ctr = 0; ctr < this.spriteVariables[spriteObject].length; ctr++){
+						this.spriteVariables[spriteObject][ctr].update();
+					}
+		}else{
+					this.spriteVariables[spriteObject].update();			
+		}
+
 	}
 	this.paint();
 }
