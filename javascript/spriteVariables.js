@@ -13,7 +13,7 @@ arrayObject.prototype.init = function(){
 	 c_1 = new Coin((360 - 30 - 40), 0, "/game/coin_Anim.png", true, 8, 8, true , {x : 0 ,y :ySpeed }); 
 	 m_2 = new Monkey((360 - 30 - 76), 0, "/game/monk2.png", true, 4, 0, true , {x : 0 ,y : ySpeed});
 	 h_2 = new Halloween((360 - 30 - 55), 100, "/game/hell.png", true, 2, 0, true , {x : 0 ,y : ySpeed});
-	for (var ctr = 0 ; ctr <= 5; ctr++){
+	for (var ctr = 0; ctr <= 5; ctr++){
 		if (0 == ctr%2)
 			this.monkeyObject.push(m_1);
 		else
@@ -28,7 +28,7 @@ arrayObject.prototype.init = function(){
 	}
 	
 	for (var ctr = 0; ctr < 10; ctr++){
-		this.coinObject.push(c_1);	
+		this.coinObject.push(c_1);
 	}
 }
 
