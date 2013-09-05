@@ -14,8 +14,12 @@ Monkey.prototype = Object.create(Sprite.prototype);
 
 Monkey.prototype.update = function(){
 
-	this.y = ((this.y < (640 - this.speedY)) ? (this.y + this.speedY) : -this.Height);
-	
+	if (this.isVisible){
+		this.y = ((this.y < (640 - this.speedY)) ? (this.y + this.speedY) : (-100));
+		if ((-100) == this.y){
+			this.isVisible = false;
+		}
+	}
 }
 
 

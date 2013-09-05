@@ -1,38 +1,48 @@
-function arrayObject (){
+function movableObject (){
 	this.monkeyObject     =  new Array();
-	this.halloweenObject  = new Array();
+	this.halloweenObject  =  new Array();
 	this.coinObject       =  new Array();
+	this.objects          =  new Array();
 
 	this.init();
+	this.makeObjectArray();
 };
 
-arrayObject.prototype.init = function(){
-	 ySpeed = .1,
-	 m_1 = new Monkey(30, 0, "/game/monk.png", true, 4, 0, true , {x : 0 ,y : ySpeed});
-	 h_1 = new Halloween(30, 100, "/game/hell2.png", true, 2, 0, true , {x : 0 ,y : ySpeed});
-	 c_1 = new Coin((360 - 30 - 40), 0, "/game/coin_Anim.png", true, 8, 8, true , {x : 0 ,y :ySpeed }); 
-	 m_2 = new Monkey((360 - 30 - 76), 0, "/game/monk2.png", true, 4, 0, true , {x : 0 ,y : ySpeed});
-	 h_2 = new Halloween((360 - 30 - 55), 100, "/game/hell.png", true, 2, 0, true , {x : 0 ,y : ySpeed});
-	for (var ctr = 0; ctr <= 5; ctr++){
-		if (0 == ctr%2)
-			this.monkeyObject.push(m_1);
-		else
-			this.monkeyObject.push(m_2);
-	}
-	
-	for (var ctr = 0; ctr <= 5; ctr++){
-		if (0 == ctr%2)
-			this.halloweenObject.push(h_1);
-		else
-			this.halloweenObject.push(h_2);
-	}
-	
-	for (var ctr = 0; ctr < 10; ctr++){
-		this.coinObject.push(c_1);
-	}
+
+movableObject.prototype.makeObjectArray = function(){
+	this.objects.push(this.monkeyObject);
+	this.objects.push(this.halloweenObject);
+	this.objects.push(this.coinObject);
 }
 
-arrayO = new arrayObject();
+
+movableObject.prototype.init = function(){
+	 var ySpeed = 1;
+	 
+	for (var ctr = 0; ctr <= 5; ctr++){
+		if (0 == ctr%2)
+			this.monkeyObject.push(new Monkey(30, -100, "/game/monk.png", false, 4, 0, true , {x : 0 ,y : ySpeed}));
+		else
+			this.monkeyObject.push(new Monkey((360 - 30 - 76), -100, "/game/monk2.png", false, 4, 0, true , {x : 0 ,y : ySpeed}));
+	}
+	
+	for (var ctr = 0; ctr <= 5; ctr++){
+		if (0 == ctr%2)
+			this.halloweenObject.push(new Halloween(30, -100, "/game/hell2.png", false, 2, 0, true , {x : 0 ,y : ySpeed}));
+		else
+			this.halloweenObject.push(new Halloween((360 - 30 - 55), -100, "/game/hell.png", false, 2, 0, true , {x : 0 ,y : ySpeed}));
+	}
+	
+	for (var ctr = 0; ctr < 16; ctr++){
+		if ( ctr < 8)
+			this.coinObject.push(new Coin((360 - 30 - 40), -100, "/game/coin_Anim.png", false, 8, 8, true , {x : 0 ,y :ySpeed }));
+		else
+			this.coinObject.push(new Coin(30, -100, "/game/coin_Anim.png", false, 8, 8, true , {x : 0 ,y :ySpeed }));
+	}	
+}
+
+movable = new movableObject();
+
 
 var spriteVariables = {
 	//Sprite(positionX, positionY, imageUrl, isVisible, frameCount, rowCount, isAnimated)
@@ -42,9 +52,7 @@ var spriteVariables = {
 	rightRamp1   :  new Ramp((360 - 30), -640 , "/game/ramp_r.png", true, 1, 0, false , {x : 0 ,y : 10}),
 	rightRamp2   :  new Ramp((360 - 30), 0, "/game/ramp_r.png", true, 1, 0, false , {x : 0 ,y : 10}),
 	hero         :  new Hero((360 - 30 - 40), 500, "/game/bhero.png", true, 32, 0, true , {x : 6 ,y : 0}),
-	coin         :  arrayO.coinObject,
-	monk         :  arrayO.monkeyObject,
-	halloween    :  arrayO.halloweenObject
+	movable      :  movable.objects
 };
 
 

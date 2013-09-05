@@ -11,7 +11,12 @@ Coin.prototype = Object.create(Sprite.prototype);
 
 Coin.prototype.update = function(){
 
-	// to be implemented
-	this.y = ((this.y < (640 - this.speedY)) ? (this.y + this.speedY) : -34);
 
+	// to be implemented
+	if (this.isVisible){	
+		this.y = ((this.y < (640 - this.speedY)) ? (this.y + this.speedY) : -100);
+		if (-100 == this.y){
+			this.isVisible = false;
+		}
+	}
 }
