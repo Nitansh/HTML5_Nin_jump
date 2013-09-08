@@ -72,8 +72,13 @@ GameManager.prototype.objectController = function(){
 		
 		//Genrating the monkey
 
-		var random = Math.floor(Math.random() * speedVariables.monkeyProb + speedVariables.halloweenProb + speedVariables.coinProb)
+		var rand1 = Math.floor(Math.random() * (speedVariables.monkeyProb + 1));
+		var rand2 = Math.floor(Math.random() * (speedVariables.halloweenProb + 1));
+		var rand3 = Math.floor(Math.random() * (speedVariables.coinProb+ 1));
 
+		random = rand1 + rand2 + rand3;
+
+		random = random + speedVariables.startRandomIndex;
 		
 		if (speedVariables.coinInProgess)
 		{
@@ -85,7 +90,7 @@ GameManager.prototype.objectController = function(){
 		console.log("Something have to be genrated random number is " + random +  "coin genration bool" +  speedVariables.coinInProgess );
 
 
-		if (0 < random &&  random <= speedVariables.monkeyProb && !speedVariables.coinInProgess){
+		if (speedVariables.startRandomIndex < random &&  random <= (speedVariables.startRandomIndex+speedVariables.monkeyProb) && !speedVariables.coinInProgess){
 			random = Math.floor(Math.random() * 6)
 			if (!this.spriteVariables.movable[0][random]['isVisible']){
 				this.spriteVariables.movable[0][random]['isVisible'] = true;
@@ -93,7 +98,7 @@ GameManager.prototype.objectController = function(){
 				// Genrate the power
 			}
 			
-		}else if (speedVariables.monkeyProb < random && random <= speedVariables.monkeyProb + speedVariables.halloweenProb && !speedVariables.coinInProgess){
+		}else if ( (speedVariables.startRandomIndex + speedVariables.monkeyProb) < random && random <= (speedVariables.startRandomIndex + speedVariables.monkeyProb + speedVariables.halloweenProb) && !speedVariables.coinInProgess){
 			random = Math.floor(Math.random() * 6)
 			if (!this.spriteVariables.movable[1][random]['isVisible']){
 				this.spriteVariables.movable[1][random]['isVisible'] = true;
@@ -101,7 +106,7 @@ GameManager.prototype.objectController = function(){
 				// Genrate the power
 			}
 
-		}else if (speedVariables.monkeyProb + speedVariables.halloweenProb < random && random <= speedVariables.monkeyProb + speedVariables.halloweenProb + speedVariables.coinProb || speedVariables.coinInProgess){			
+		}else if ( (speedVariables.startRandomIndex + speedVariables.monkeyProb + speedVariables.halloweenProb) < random && random <= (speedVariables.startRandomIndex + speedVariables.monkeyProb + speedVariables.halloweenProb + speedVariables.coinProb) || speedVariables.coinInProgess){			
 			
 			if (!speedVariables.coinInProgess){
 
@@ -109,6 +114,7 @@ GameManager.prototype.objectController = function(){
 				random1 =  random1 + 1;
 				speedVariables.coinCount     = 4 * random1;
 				speedVariables.coinInProgess = true;
+				speedVariables.objectFrequency = 12;
 			}
 			
 
@@ -120,6 +126,7 @@ GameManager.prototype.objectController = function(){
 
 				speedVariables.coinInProgess = false;
 				speedVariables.coinIndex = 0;
+				speedVariables.objectFrequency = 20;
 			}		
 		}
  	}	

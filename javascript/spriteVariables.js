@@ -17,7 +17,7 @@ movableObject.prototype.makeObjectArray = function(){
 
 
 movableObject.prototype.init = function(){
-	 var ySpeed = 1;
+	 var ySpeed = speedVariables.globalSpeedY;
 	 
 	for (var ctr = 0; ctr <= 5; ctr++){
 		if (0 == ctr%2)
@@ -47,11 +47,11 @@ movable = new movableObject();
 var spriteVariables = {
 	//Sprite(positionX, positionY, imageUrl, isVisible, frameCount, rowCount, isAnimated)
 	background   :  new Sprite(0, 0, "/game/gameBG.jpg", true, 1, 0, false),
-	leftRamp1    :  new Ramp(0, -640, "/game/ramp_l.png", true, 1, 0, false , {x : 0 ,y : 10}),
-	leftRamp2    :  new Ramp(0, 0, "/game/ramp_l.png", true, 1, 0, false, {x : 0 ,y : 10}),	
-	rightRamp1   :  new Ramp((360 - 30), -640 , "/game/ramp_r.png", true, 1, 0, false , {x : 0 ,y : 10}),
-	rightRamp2   :  new Ramp((360 - 30), 0, "/game/ramp_r.png", true, 1, 0, false , {x : 0 ,y : 10}),
-	hero         :  new Hero((360 - 30 - 40), 500, "/game/bhero.png", true, 32, 0, true , {x : 6 ,y : 0}),
+	leftRamp1    :  new Ramp(0, -640, "/game/ramp_l.png", true, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY}),
+	leftRamp2    :  new Ramp(0, 0, "/game/ramp_l.png", true, 1, 0, false, {x : 0 ,y : speedVariables.globalSpeedY}),	
+	rightRamp1   :  new Ramp((360 - 30), -640 , "/game/ramp_r.png", true, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY}),
+	rightRamp2   :  new Ramp((360 - 30), 0, "/game/ramp_r.png", true, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY}),
+	hero         :  new Hero((360 - 30 - 40), 500, "/game/bhero.png", true, 32, 0, true , {x : 8 ,y : 0}),
 	movable      :  movable.objects
 };
 

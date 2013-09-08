@@ -63,8 +63,10 @@ function Sprite(positionX, positionY, imageUrl, isVisible, frameCount, rowcount,
 									this.currentFrame = (++this.currentFrame) % this.frameThreshold;
 							    }
 							    if (this.rowcount && !this.currentFrame){
-									this.currentRowCount = (++this.currentRowCount) % this.rowcount;
-									this.currentFrame == 0;
+							    	if (0 == (speedVariables.numberOfFrame) % speedVariables.speedController){	
+										this.currentRowCount = (++this.currentRowCount) % this.rowcount;
+										this.currentFrame == 0;
+									}
 								}
 
 
