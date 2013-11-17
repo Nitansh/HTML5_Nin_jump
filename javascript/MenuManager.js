@@ -1,6 +1,7 @@
 function MenuManager(menuVariables){
 	this.canvas              = Globalcanvas;
 	this.context 			 = Globalcontext;
+	this.state               = 'menu';
 	this.menuVariables       = menuVariables;
 
 }
@@ -29,3 +30,49 @@ MenuManager.prototype.clearScreen = function(){
 	this.context.fillRect(0, 0, this.canvas.width , this.canvas.height);
 	
 }
+
+MenuManager.prototype.stateController = function(){
+
+ if (!this.state.localeCompare('menu') || !this.state.localeCompare('pause') ){
+ 	menuVariables.backButton.isVisible  = false ;
+	menuVariables.playButton.isVisible = true;
+	menuVariables.soundButton.isVisible = true;
+	menuVariables.helpButton.isVisible  = true ;
+	menuVariables.aboutButton.isVisible = true;
+	menuVariables.aboutText.isVisible   = false;
+	menuVariables.helpText.isVisible    = false; 
+ }
+
+ if (!this.state.localeCompare('help')){
+ 	menuVariables.backButton.isVisible  = true ;
+	menuVariables.playButton.isVisible  = false;
+	menuVariables.soundButton.isVisible = false;
+	menuVariables.helpButton.isVisible  = false;
+	menuVariables.aboutButton.isVisible = false;
+	menuVariables.aboutText.isVisible   = false;
+	menuVariables.helpText.isVisible    = true; 
+
+ }
+
+ if (!this.state.localeCompare('about')){
+ 	menuVariables.backButton.isVisible  = true ;
+	menuVariables.playButton.isVisible  = false;
+	menuVariables.soundButton.isVisible = false;
+	menuVariables.helpButton.isVisible  = false;
+	menuVariables.aboutButton.isVisible = false;
+	menuVariables.aboutText.isVisible   = true;
+	menuVariables.helpText.isVisible    = false; 
+
+ }
+
+if (!this.state.localeCompare('play')){
+	gameManager.initGameScene();
+}
+
+if (!this.state.localeCompare('resumed')){
+	// do nothing only state comparison will do the rest :) :D 3:)
+}
+
+  this.paint();
+}
+

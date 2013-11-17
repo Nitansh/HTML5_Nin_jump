@@ -2,7 +2,7 @@ function GameManager(spriteVariables){
 	this.canvas              = Globalcanvas;
 	this.context 			 = Globalcontext;
 	this.spriteVariables     = spriteVariables;
-
+	this.state               = 'menu';
 }
 
 
@@ -24,22 +24,24 @@ GameManager.prototype.paint = function() {
 }
 
 GameManager.prototype.update = function(){
-	speedVariables.numberOfFrame++;
-	for (var spriteObject in this.spriteVariables){
-		if (this.spriteVariables[spriteObject].length){
-				for (var ctr_type = 0; ctr_type < this.spriteVariables[spriteObject].length; ctr_type++){
-						for (var ctr_no = 0; ctr_no < this.spriteVariables[spriteObject][ctr_type].length; ctr_no++){
-							//update function
-							this.spriteVariables[spriteObject][ctr_type][ctr_no].update();
+	if (!this.state.localeCompare('play') || !this.state.localeCompare('resumed')){
+		speedVariables.numberOfFrame++;
+		for (var spriteObject in this.spriteVariables){
+			if (this.spriteVariables[spriteObject].length){
+					for (var ctr_type = 0; ctr_type < this.spriteVariables[spriteObject].length; ctr_type++){
+							for (var ctr_no = 0; ctr_no < this.spriteVariables[spriteObject][ctr_type].length; ctr_no++){
+								//update function
+								this.spriteVariables[spriteObject][ctr_type][ctr_no].update();
+							}
 						}
-					}
-		}else{
-					this.spriteVariables[spriteObject].update();			
-		}
+			}else{
+						this.spriteVariables[spriteObject].update();			
+			}
 
+		}
+		this.paint();														//Calling the paint function on regular interval with update
+		this.objectController();											//Calling the objectController function on regular interval with update
 	}
-	this.paint();														//Calling the paint function on regular interval with update
-	this.objectController();											//Calling the objectController function on regular interval with update
 }
 
 GameManager.prototype.initGameScene = function(){
@@ -130,9 +132,6 @@ GameManager.prototype.objectController = function(){
  	}	
 }
 
-window.getInput = function(event){
-	spriteVariables.hero.onInput(event);
-}
 
 window.requestAnimFrame = (function(){
 					return  window.requestAnimationFrame ||
@@ -144,6 +143,3 @@ window.requestAnimFrame = (function(){
 								window.setTimeout(callback, speedVariables.fps);
 							};
 				})();
-
-
- window.addEventListener("onclick", window.getInput, false);

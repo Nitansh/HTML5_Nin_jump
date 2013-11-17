@@ -52,6 +52,7 @@ var spriteVariables = {
 	rightRamp1   :  new Ramp((360 - 30), -640 , "/game/ramp_r.png", true, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY}),
 	rightRamp2   :  new Ramp((360 - 30), 0, "/game/ramp_r.png", true, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY}),
 	hero         :  new Hero((360 - 30 - 40), 500, "/game/bhero.png", true, 32, 0, true , {x : 8 ,y : 0}),
+	backButton :  new Sprite(360 - 47, 640 - 66, "/menu/back_button.png", true, 1, 0, false),
 	movable      :  movable.objects
 };
 
