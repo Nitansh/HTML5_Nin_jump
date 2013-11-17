@@ -45,7 +45,8 @@ movable = new movableObject();
 
 
 var spriteVariables = {
-	//Sprite(positionX, positionY, imageUrl, isVisible, frameCount, rowCount, isAnimated)
+	//Sprite(positionX, positionY, imageUrl, isVisible, frameCount, rowCount, isAnimated) generic code :D :D
+	//splashScreen :  new Sprite(0, 0, "/menu/splash.jpg", true, 1, 0, false),
 	background   :  new Sprite(0, 0, "/game/gameBG.jpg", true, 1, 0, false),
 	leftRamp1    :  new Ramp(0, -640, "/game/ramp_l.png", true, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY}),
 	leftRamp2    :  new Ramp(0, 0, "/game/ramp_l.png", true, 1, 0, false, {x : 0 ,y : speedVariables.globalSpeedY}),	

@@ -10,7 +10,13 @@
 window.onload = function(){
 	
 	gameManager = new GameManager(spriteVariables);
+	// should be done at time of initialization :)
+	gameManager.canvas.height = window.innerHeight;
+	gameManager.canvas.width  = window.innerWidth;
+
+	
 	gameManager.initGameScene();
+
 
 	window.addEventListener("click", getInput, true);
 };

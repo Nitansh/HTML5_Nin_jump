@@ -44,8 +44,6 @@ GameManager.prototype.update = function(){
 
 GameManager.prototype.initGameScene = function(){
 	
-	this.canvas.height = window.innerHeight;
-	this.canvas.width  = window.innerWidth;
 	self = this;	
 		
 	(function animloop(){

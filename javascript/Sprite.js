@@ -21,6 +21,7 @@ function Sprite(positionX, positionY, imageUrl, isVisible, frameCount, rowcount,
 					this.rowcount		   = rowcount;
 					this.currentRowCount   = 0;
 					this.imageElement      = null;
+					this.imageLoad         = false; 
 
 					if (isAnimated){
 						this.presentAnimation  = -1;
@@ -34,8 +35,9 @@ function Sprite(positionX, positionY, imageUrl, isVisible, frameCount, rowcount,
 
 				Sprite.prototype.init = function(imageUrl){
 						if (undefined !=  imageUrl){
+							var self = this;
 							this.imageElement        = new Image();
-							this.imageElement.onload = this.loadImage(this.imageElement);
+							this.imageElement.onload = function(){ self.setHeigthWidth();self.imageLoad = true;}
 							this.imageElement.src	 = this.imageSrc;
 							this.imageElement.x      = this.x;
 							this.imageElement.y      = this.y;
@@ -44,16 +46,14 @@ function Sprite(positionX, positionY, imageUrl, isVisible, frameCount, rowcount,
 							}
 					}
 
+				Sprite.prototype.setHeigthWidth = function(imageUrl){
+					this.Width  = this.isAnimated ? this.imageElement.width/this.frameCount : this.imageElement.width;
+					this.Height = (0 != this.rowcount) ? this.imageElement.height/this.rowcount : this.imageElement.height; 
+				}
 
 				Sprite.prototype.paint = function(canvasContext){
 
-					if (0 == this.Width)
-					{
-						this.Width  = this.isAnimated ? this.imageElement.width/this.frameCount : this.imageElement.width;
-						this.Height = (0 != this.rowcount) ? this.imageElement.height/this.rowcount : this.imageElement.height; 
-					}
-
-					if (this.isVisible){
+					if (this.isVisible && this.imageLoad){
 						if (!this.isAnimated){
 							canvasContext.drawImage(this.imageElement, this.x, this.y, (this.resolution * this.Width), (this.resolution * this.Height));
 						}
@@ -68,19 +68,8 @@ function Sprite(positionX, positionY, imageUrl, isVisible, frameCount, rowcount,
 										this.currentFrame == 0;
 									}
 								}
-
-
-					}	
-				}
-			}
-
-				Sprite.prototype.loadImage = function (image){
-
-					if (image.complete){	
-						return
-					}else{
-						window.setTimeOut(self.loadImage(image),100);
-					}
+							}
+						}
 				}
 
 				Sprite.prototype.collidesWith = function(obj){
