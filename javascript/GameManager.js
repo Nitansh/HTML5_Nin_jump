@@ -1,6 +1,6 @@
 function GameManager(spriteVariables){
-	this.canvas              = document.getElementById("gameCanvas");
-	this.context 			 = this.canvas.getContext("2d");
+	this.canvas              = Globalcanvas;
+	this.context 			 = Globalcontext;
 	this.spriteVariables     = spriteVariables;
 
 }

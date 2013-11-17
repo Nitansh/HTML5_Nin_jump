@@ -9,11 +9,17 @@
 
 window.onload = function(){
 	
-	gameManager = new GameManager(spriteVariables);
 	// should be done at time of initialization :)
-	gameManager.canvas.height = window.innerHeight;
-	gameManager.canvas.width  = window.innerWidth;
-	gameManager.initGameScene();
+	Globalcanvas        = document.getElementById("gameCanvas");
+	Globalcontext       = Globalcanvas.getContext("2d");
+	Globalcanvas.height = window.innerHeight;
+	Globalcanvas.width  = window.innerWidth;
+	
+
+	gameManager = new GameManager(spriteVariables);
+	menuManager = new MenuManager(menuVariables);
+	menuManager.paint();
+	//gameManager.initGameScene();
 
 
 	window.addEventListener("click", getInput, true);
