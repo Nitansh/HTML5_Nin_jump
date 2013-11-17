@@ -13,8 +13,6 @@ window.onload = function(){
 	// should be done at time of initialization :)
 	gameManager.canvas.height = window.innerHeight;
 	gameManager.canvas.width  = window.innerWidth;
-
-	
 	gameManager.initGameScene();
 
 

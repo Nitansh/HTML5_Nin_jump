@@ -22,6 +22,9 @@ function Sprite(positionX, positionY, imageUrl, isVisible, frameCount, rowcount,
 					this.currentRowCount   = 0;
 					this.imageElement      = null;
 					this.imageLoad         = false; 
+					this.canvas            = document.getElementById("gameCanvas");
+					this.context 		   = this.canvas.getContext("2d");
+	
 
 					if (isAnimated){
 						this.presentAnimation  = -1;
@@ -37,7 +40,7 @@ function Sprite(positionX, positionY, imageUrl, isVisible, frameCount, rowcount,
 						if (undefined !=  imageUrl){
 							var self = this;
 							this.imageElement        = new Image();
-							this.imageElement.onload = function(){ self.setHeigthWidth();self.imageLoad = true;}
+							this.imageElement.onload = function(){ self.setHeigthWidth();self.imageLoad = true; self.paint(self.context);}
 							this.imageElement.src	 = this.imageSrc;
 							this.imageElement.x      = this.x;
 							this.imageElement.y      = this.y;
