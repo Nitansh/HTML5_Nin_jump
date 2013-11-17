@@ -33,14 +33,28 @@ MenuManager.prototype.clearScreen = function(){
 
 MenuManager.prototype.stateController = function(){
 
- if (!this.state.localeCompare('menu') || !this.state.localeCompare('pause') ){
+ if (!this.state.localeCompare('pause')){
+ 	menuVariables.backButton.isVisible  = false ;
+	menuVariables.playButton.isVisible  = false;
+	menuVariables.soundButton.isVisible = true;
+	menuVariables.helpButton.isVisible  = true ;
+	menuVariables.aboutButton.isVisible = true;
+	menuVariables.aboutText.isVisible   = false;
+	menuVariables.helpText.isVisible    = false;
+	menuVariables.resumeButton.isVisible= true; 
+ 
+ }
+
+
+ if (!this.state.localeCompare('menu')) {
  	menuVariables.backButton.isVisible  = false ;
 	menuVariables.playButton.isVisible = true;
 	menuVariables.soundButton.isVisible = true;
 	menuVariables.helpButton.isVisible  = true ;
 	menuVariables.aboutButton.isVisible = true;
 	menuVariables.aboutText.isVisible   = false;
-	menuVariables.helpText.isVisible    = false; 
+	menuVariables.helpText.isVisible    = false;
+	menuVariables.resumeButton.isVisible= false; 
  }
 
  if (!this.state.localeCompare('help')){
@@ -50,7 +64,8 @@ MenuManager.prototype.stateController = function(){
 	menuVariables.helpButton.isVisible  = false;
 	menuVariables.aboutButton.isVisible = false;
 	menuVariables.aboutText.isVisible   = false;
-	menuVariables.helpText.isVisible    = true; 
+	menuVariables.helpText.isVisible    = true;
+	menuVariables.resumeButton.isVisible= false; 
 
  }
 
@@ -61,12 +76,14 @@ MenuManager.prototype.stateController = function(){
 	menuVariables.helpButton.isVisible  = false;
 	menuVariables.aboutButton.isVisible = false;
 	menuVariables.aboutText.isVisible   = true;
-	menuVariables.helpText.isVisible    = false; 
+	menuVariables.helpText.isVisible    = false;
+	menuVariables.resumeButton.isVisible= false; 
 
  }
 
-if (!this.state.localeCompare('play')){
+if (!this.state.localeCompare('play') && gameOn){
 	gameManager.initGameScene();
+	gameOn = !gameOn;
 }
 
 if (!this.state.localeCompare('resumed')){

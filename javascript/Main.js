@@ -15,6 +15,7 @@ window.onload = function(){
 	Globalcanvas.height = window.innerHeight;
 	Globalcanvas.width  = window.innerWidth;	
 	soundOn             = true;
+	gameOn              = true;
 
 	gameManager = new GameManager(spriteVariables);
 	menuManager = new MenuManager(menuVariables);
@@ -49,14 +50,13 @@ function getInput(event){
 					menuManager.state = 'about';
 					gameManager.state = 'about';
 			}
-	  		if(menuVariables.playButton.isVisible && menuVariables.playButton.Clicked(event)){	
-	  			if (!menuManager.state.localeCompare('menu')){		
+	  		if(menuVariables.playButton.isVisible && menuVariables.playButton.Clicked(event)){			
 					menuManager.state = 'play';
 					gameManager.state = 'play';
-				}else{
-					menuManager.state = 'resumed';
-					gameManager.state = 'resumed';
-				}
+			}
+			if(menuVariables.resumeButton.isVisible && menuVariables.resumeButton.Clicked(event)){
+				menuManager.state = 'resumed';
+				gameManager.state = 'resumed';
 			}
 			if(menuVariables.soundButton.isVisible && menuVariables.soundButton.Clicked(event)){
 				if (soundOn){
