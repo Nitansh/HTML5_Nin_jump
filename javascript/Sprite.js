@@ -72,25 +72,7 @@ function Sprite(positionX, positionY, imageUrl, isVisible, frameCount, rowcount,
 						}
 				}
 
-				Sprite.prototype.collidesWith = function(obj){
-
-					if ( this.x + this.Width < obj.x){
-						return false;
-					}
-					if ( this.x  > obj.x + obj.Width){
-						return false;
-					}
-					if (this.y - this.Height > obj.y ){
-						return false;
-					}
-					if ( this.y  < obj.y - obj.Height){
-						return false;
-					}
-		
-					return true;
-				}
-
-				Sprite.prototype.update = function(){}
+				Sprite.prototype.update = function(context){}
 
 				Sprite.prototype.Clicked = function(event){
 					var MouseX = event.pageX;

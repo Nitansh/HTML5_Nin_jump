@@ -9,7 +9,7 @@ function Ramp(positionX, positionY, imageUrl, isVisible, frameCount, rowCount, i
 Ramp.prototype = Object.create(Sprite.prototype);
 
 
-Ramp.prototype.update = function(){
+Ramp.prototype.update = function(context){
 
 	// to be implemented
 	this.y = ((this.y < (640 - this.speedY)) ? (this.y + this.speedY) : -this.Height);

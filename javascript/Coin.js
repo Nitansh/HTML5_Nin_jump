@@ -9,7 +9,7 @@ function Coin(positionX, positionY, imageUrl, isVisible, frameCount, rowCount, i
 Coin.prototype = Object.create(Sprite.prototype);
 
 
-Coin.prototype.update = function(){
+Coin.prototype.update = function(context){
 
 
 	// to be implemented
