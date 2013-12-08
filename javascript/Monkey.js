@@ -12,7 +12,7 @@ function Monkey(positionX, positionY, imageUrl, isVisible, frameCount, rowCount,
 Monkey.prototype = Object.create(Sprite.prototype);
 
 
-Monkey.prototype.update = function(context){
+Monkey.prototype.update = function(){
 
 	if (this.isVisible){
 		this.y = ((this.y < (640 - this.speedY)) ? (this.y + this.speedY) : (-100));

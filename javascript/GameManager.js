@@ -31,12 +31,11 @@ GameManager.prototype.update = function(){
 					for (var ctr_type = 0; ctr_type < this.spriteVariables[spriteObject].length; ctr_type++){
 							for (var ctr_no = 0; ctr_no < this.spriteVariables[spriteObject][ctr_type].length; ctr_no++){
 								//update function
-								this.spriteVariables[spriteObject][ctr_type][ctr_no].update(this.update);
+								this.spriteVariables[spriteObject][ctr_type][ctr_no].update();
 							}
 						}
 			}else{
-						//update function 
-						this.spriteVariables[spriteObject].update(this.context);			
+						this.spriteVariables[spriteObject].update();			
 			}
 
 		}

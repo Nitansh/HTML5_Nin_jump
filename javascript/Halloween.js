@@ -9,7 +9,7 @@ function Halloween(positionX, positionY, imageUrl, isVisible, frameCount, rowCou
 Halloween.prototype = Object.create(Sprite.prototype);
 
 
-Halloween.prototype.update = function(context){
+Halloween.prototype.update = function(){
 
 	if (this.isVisible){
 		this.y = ((this.y < (640 - this.speedY)) ? (this.y + this.speedY) : (-100));

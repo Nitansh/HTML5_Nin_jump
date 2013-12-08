@@ -19,7 +19,6 @@ window.onload = function(){
 
 	gameManager = new GameManager(spriteVariables);
 	menuManager = new MenuManager(menuVariables);
-	spriteVariables.hero.lastImage = spriteVariables.hero.getImageData(Globalcontext); 
 	menuManager.paint();
 
 	window.addEventListener("click", getInput, true);

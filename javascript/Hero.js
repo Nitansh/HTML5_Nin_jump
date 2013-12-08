@@ -19,9 +19,21 @@ function Hero(positionX, positionY, imageUrl, isVisible, frameCount, rowCount, i
 Hero.prototype = Object.create(Sprite.prototype);
 
 
-Hero.prototype.update = function(context){
+Hero.prototype.update = function(){
 
-    this.collidesWith(context);
+	for (var spriteObject in spriteVariables){
+			if (spriteVariables[spriteObject].length){
+					for (var ctr_type = 0; ctr_type < spriteVariables[spriteObject].length; ctr_type++){
+							for (var ctr_no = 0; ctr_no < spriteVariables[spriteObject][ctr_type].length; ctr_no++){
+								//update function
+								if(this.collidesWith(spriteVariables[spriteObject][ctr_type][ctr_no]))
+								   spriteVariables[spriteObject][ctr_type][ctr_no].isVisible = false;
+							}
+						}
+				}
+			}	
+
+
 	if (this.inAir && this.isLeft){
 		this.leftToRightAnimation();
 	}
@@ -133,23 +145,14 @@ Hero.prototype.rightToLeftAnimation = function(){
 
 }
 
-Hero.prototype.getImageData = function(ctx){
-	return ctx.getImageData(this.x , this.y, this.Width , 1);
-}
-
-Hero.prototype.collidesWith = function(ctx){
+Hero.prototype.collidesWith = function(obj){
 	
-	if ( (this.x == (360 - 30 - 40) || (this.x == 30) ) && (gameManager.state.localeCompare('play') || gameManager.state.localeCompare('resumed'))){
-		this.newImage = this.getImageData(ctx);
-		for (var counter = 0; counter < this.newImage.data.length; counter+4){
-			if (!(this.newImage.data[counter] == this.lastImage.data[counter] && this.newImage.data[counter + 1] == this.lastImage.data[counter + 1] && this.newImage.data[counter + 2] == this.lastImage.data[counter + 2])){	
-				this.lastImage = this.getImageData(ctx);
-				return true;
-			}else{	
-				this.lastImage = this.getImageData(ctx);
-				return false;
-			}
-				
-		}
+
+	if ( (this.x + this.Width > obj.x + obj.Width/2) && ( this.x  < obj.x + obj.Width/2) && (this.y < obj.y + obj.Height)) {
+		obj.y = -100;
+		return true;
 	}
+	
+	return false;	
+	
 }
