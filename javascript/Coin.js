@@ -4,6 +4,7 @@ function Coin(positionX, positionY, imageUrl, isVisible, frameCount, rowCount, i
 	
 	this.speedX = speed.x;
 	this.speedY = speed.y; 
+	this.isObstacle  = false;
 }
 
 Coin.prototype = Object.create(Sprite.prototype);

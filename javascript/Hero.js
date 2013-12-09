@@ -12,7 +12,7 @@ function Hero(positionX, positionY, imageUrl, isVisible, frameCount, rowCount, i
 	this.inAir    = false;
 	this.lastImage= null ;
 	this.newImage = null ;
-	
+	this.coinNumber = 0;
 	this.Animation(0);
 }
 
@@ -21,18 +21,7 @@ Hero.prototype = Object.create(Sprite.prototype);
 
 Hero.prototype.update = function(){
 
-	for (var spriteObject in spriteVariables){
-			if (spriteVariables[spriteObject].length){
-					for (var ctr_type = 0; ctr_type < spriteVariables[spriteObject].length; ctr_type++){
-							for (var ctr_no = 0; ctr_no < spriteVariables[spriteObject][ctr_type].length; ctr_no++){
-								//update function
-								if(this.collidesWith(spriteVariables[spriteObject][ctr_type][ctr_no]))
-								   spriteVariables[spriteObject][ctr_type][ctr_no].isVisible = false;
-							}
-						}
-				}
-			}	
-
+	this.collisionLogic();
 
 	if (this.inAir && this.isLeft){
 		this.leftToRightAnimation();
@@ -145,14 +134,60 @@ Hero.prototype.rightToLeftAnimation = function(){
 
 }
 
+Hero.prototype.collisionLogic = function(){
+	for (var spriteObject in spriteVariables){
+		if (spriteVariables[spriteObject].length){
+			for (var ctr_type = 0; ctr_type < spriteVariables[spriteObject].length; ctr_type++){
+				for (var ctr_no = 0; ctr_no < spriteVariables[spriteObject][ctr_type].length; ctr_no++){
+					//update function
+					if(this.collidesWith(spriteVariables[spriteObject][ctr_type][ctr_no])){
+						if(spriteVariables[spriteObject][ctr_type][ctr_no].isObstacle){
+							this.updateObject(spriteVariables[spriteObject][ctr_type][ctr_no] ,true);
+						}else{
+							this.updateObject(spriteVariables[spriteObject][ctr_type][ctr_no] ,false);
+						}
+					}
+				}
+			}
+		}	
+	}	
+}
+
+
+Hero.prototype.updateObject = function(obj, visiblility){
+	if (!visiblility){
+		obj.y = -100;
+		obj.isVisible = false;
+		this.updateCoinCount();
+	}else{
+		this.heroTata();
+	}
+
+}
+
+
+Hero.prototype.heroTata = function(){
+
+	this.speedY =  0;
+	if (this.isLeft){
+		this.Animation(5);
+	}
+	if (this.isRight){
+
+		this.Animation(4);
+	}
+
+}
+
+Hero.prototype.updateCoinCount= function(){
+	this.coinNumber++;
+}
+
 Hero.prototype.collidesWith = function(obj){
 	
-
 	if ( (this.x + this.Width > obj.x + obj.Width/2) && ( this.x  < obj.x + obj.Width/2) && (this.y < obj.y + obj.Height)) {
-		obj.y = -100;
 		return true;
 	}
 	
-	return false;	
-	
+	return false;		
 }

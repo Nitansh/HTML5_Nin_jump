@@ -22,7 +22,7 @@ function Sprite(positionX, positionY, imageUrl, isVisible, frameCount, rowcount,
 					this.currentRowCount   = 0;
 					this.imageElement      = null;
 					this.imageLoad         = false; 
-
+					
 					if (isAnimated){
 						this.presentAnimation  = -1;
 						this.isAnimated 	   = isAnimated;

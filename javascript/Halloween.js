@@ -3,6 +3,7 @@ function Halloween(positionX, positionY, imageUrl, isVisible, frameCount, rowCou
 	this.base(positionX, positionY, imageUrl, isVisible, frameCount, rowCount, isAnimated);
 	this.speedX   = speed.x;
 	this.speedY   = speed.y; 
+	this.isObstacle  = true;
 	this.frameThreshold = frameCount;
 }
 
