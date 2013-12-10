@@ -13,6 +13,7 @@ function Hero(positionX, positionY, imageUrl, isVisible, frameCount, rowCount, i
 	this.lastImage= null ;
 	this.newImage = null ;
 	this.coinNumber = 0;
+	this.heroFalling = false;
 	this.Animation(0);
 }
 
@@ -22,7 +23,9 @@ Hero.prototype = Object.create(Sprite.prototype);
 Hero.prototype.update = function(){
 
 	this.collisionLogic();
-
+	if (this.heroFalling){
+		this.heroTata();
+	}
 	if (this.inAir && this.isLeft){
 		this.leftToRightAnimation();
 	}
@@ -36,8 +39,8 @@ Hero.prototype.update = function(){
 
 Hero.prototype.onInput = function(evnt){
 
-	if (!this.inAir){		
-		
+
+	if (!this.inAir && !this.heroFalling){		
 		this.inAir = !this.inAir;
 	}
 }
@@ -160,7 +163,7 @@ Hero.prototype.updateObject = function(obj, visiblility){
 		obj.isVisible = false;
 		this.updateCoinCount();
 	}else{
-		this.heroTata();
+		this.heroFalling = true;
 	}
 
 }
@@ -168,12 +171,17 @@ Hero.prototype.updateObject = function(obj, visiblility){
 
 Hero.prototype.heroTata = function(){
 
-	this.speedY =  0;
+	this.speedY = 1;
+	if (this.y < 640){
+		this.y += this.speedY;
+	}else{
+		speedVariables.heroDied =  true;
+	}
+
 	if (this.isLeft){
 		this.Animation(5);
 	}
 	if (this.isRight){
-
 		this.Animation(4);
 	}
 

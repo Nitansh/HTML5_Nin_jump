@@ -81,9 +81,12 @@ MenuManager.prototype.stateController = function(){
 
  }
 
-if (!this.state.localeCompare('play') && gameOn){
-	gameManager.initGameScene();
+if (!this.state.localeCompare('play') && gameOn ){
+	spriteVariables.hero = null;
+	spriteVariables.hero = new Hero((360 - 30 - 40), 500, "/game/bhero.png", true, 32, 0, true , {x : 8 ,y : 0})
 	gameOn = !gameOn;
+	if (!gameManager.isOn)
+		gameManager.initGameScene();
 }
 
 if (!this.state.localeCompare('resumed')){

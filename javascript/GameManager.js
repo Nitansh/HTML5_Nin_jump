@@ -3,6 +3,8 @@ function GameManager(spriteVariables){
 	this.context 			 = Globalcontext;
 	this.spriteVariables     = spriteVariables;
 	this.state               = 'menu';
+	this.requestID           = null;
+	this.isOn                = false;
 }
 
 
@@ -39,17 +41,24 @@ GameManager.prototype.update = function(){
 			}
 
 		}
-		this.paint();														//Calling the paint function on regular interval with update
-		this.objectController();											//Calling the objectController function on regular interval with update
+		if (speedVariables.heroDied){
+			this.state = 'menu';
+			menuManager.state  = 'menu';
+			menuManager.stateController();
+			speedVariables.heroDied = !speedVariables.heroDied;
+			gameOn = !gameOn;
+		}else{
+			this.paint();														//Calling the paint function on regular interval with update
+			this.objectController();
+		}											//Calling the objectController function on regular interval with update
 	}
 }
 
 GameManager.prototype.initGameScene = function(){
-	
-	self = this;	
-		
+	this.isOn = true;
+	self = this;		
 	(function animloop(){
-						requestAnimFrame(animloop);  // equal to the set Interval
+						this.requestID = requestAnimFrame(animloop);  // equal to the set Interval
 						self.update();
 					})();
 	}

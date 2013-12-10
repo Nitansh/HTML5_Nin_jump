@@ -11,5 +11,6 @@ var speedVariables = {
     coinCount       : 4,
 	coinIndex       : 0,
 	globalSpeedY    : 10, 
-	fps             : 1000/60
+	fps             : 1000/60,
+	heroDied        : false
 };

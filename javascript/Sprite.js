@@ -73,7 +73,9 @@ function Sprite(positionX, positionY, imageUrl, isVisible, frameCount, rowcount,
 				}
 
 
-				Sprite.prototype.update = function(){}
+				Sprite.prototype.update = function(){
+					
+				}
 
 				Sprite.prototype.Clicked = function(event){
 					var MouseX = event.pageX;
