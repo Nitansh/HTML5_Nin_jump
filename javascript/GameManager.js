@@ -45,6 +45,8 @@ GameManager.prototype.update = function(){
 			}
 
 		}
+
+
 		if (speedVariables.heroDied){
 			this.state = 'menu';
 			menuManager.state  = 'menu';
@@ -73,6 +75,18 @@ GameManager.prototype.clearScreen = function(){
 	this.context.fillRect(0, 0, this.canvas.width , this.canvas.height);
 	
 }
+
+
+GameManager.prototype.heroLastAnimation = function(){
+
+}
+
+GameManager.prototype.heroDiedAnimation = function(){
+
+	
+}
+
+
 
 /************
 Manages the object in the game genration etc

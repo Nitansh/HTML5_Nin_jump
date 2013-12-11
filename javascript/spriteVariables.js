@@ -57,6 +57,7 @@ function SpriteVariables() {
 };
 
 SpriteVariables.prototype.SetPosition = function(){
+	this.hero = null;
 	this.hero = new Hero((360 - 30 - 40), 500, "/game/bhero.png", true, 32, 0, true , {x : 8 ,y : 0});
 
 	for (var ctr = 0; ctr <= 5; ctr++){

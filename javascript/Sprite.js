@@ -21,7 +21,9 @@ function Sprite(positionX, positionY, imageUrl, isVisible, frameCount, rowcount,
 					this.rowcount		   = rowcount;
 					this.currentRowCount   = 0;
 					this.imageElement      = null;
-					this.imageLoad         = false; 
+					this.imageLoad         = false;
+					this.heroLastANimation = false;
+					this.heroDied          = false; 
 					
 					if (isAnimated){
 						this.presentAnimation  = -1;
