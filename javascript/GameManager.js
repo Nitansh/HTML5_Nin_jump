@@ -16,11 +16,13 @@ GameManager.prototype.paint = function() {
 					for (var ctr_type = 0; ctr_type < this.spriteVariables[spriteObject].length; ctr_type++){
 						for (var ctr_no = 0; ctr_no < this.spriteVariables[spriteObject][ctr_type].length; ctr_no++){
 							// paint function
-							this.spriteVariables[spriteObject][ctr_type][ctr_no].paint(this.context);
+							if (typeof this.spriteVariables[spriteObject][ctr_type][ctr_no].paint == 'function')
+								this.spriteVariables[spriteObject][ctr_type][ctr_no].paint(this.context);
 						}
 					}
 		}else{
-			   this.spriteVariables[spriteObject].paint(this.context);			
+				if (typeof this.spriteVariables[spriteObject].paint == 'function')
+			        this.spriteVariables[spriteObject].paint(this.context);			
 		 }
 	}
 }
@@ -33,11 +35,13 @@ GameManager.prototype.update = function(){
 					for (var ctr_type = 0; ctr_type < this.spriteVariables[spriteObject].length; ctr_type++){
 							for (var ctr_no = 0; ctr_no < this.spriteVariables[spriteObject][ctr_type].length; ctr_no++){
 								//update function
-								this.spriteVariables[spriteObject][ctr_type][ctr_no].update();
+								if (typeof this.spriteVariables[spriteObject][ctr_type][ctr_no].update == 'function')
+									this.spriteVariables[spriteObject][ctr_type][ctr_no].update();
 							}
 						}
 			}else{
-						this.spriteVariables[spriteObject].update();			
+						if (typeof this.spriteVariables[spriteObject].update == 'function')
+							this.spriteVariables[spriteObject].update();			
 			}
 
 		}

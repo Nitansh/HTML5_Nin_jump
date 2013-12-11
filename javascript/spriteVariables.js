@@ -44,16 +44,33 @@ movableObject.prototype.init = function(){
 movable = new movableObject();
 
 
-var spriteVariables = {
+function SpriteVariables() {
 	//Sprite(positionX, positionY, imageUrl, isVisible, frameCount, rowCount, isAnimated) generic code :D :D
-	background   :  new Sprite(0, 0, "/game/gameBG.jpg", true, 1, 0, false),
-	leftRamp1    :  new Ramp(0, -640, "/game/ramp_l.png", true, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY}),
-	leftRamp2    :  new Ramp(0, 0, "/game/ramp_l.png", true, 1, 0, false, {x : 0 ,y : speedVariables.globalSpeedY}),	
-	rightRamp1   :  new Ramp((360 - 30), -640 , "/game/ramp_r.png", true, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY}),
-	rightRamp2   :  new Ramp((360 - 30), 0, "/game/ramp_r.png", true, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY}),
-	hero         :  new Hero((360 - 30 - 40), 500, "/game/bhero.png", true, 32, 0, true , {x : 8 ,y : 0}),
-	backButton   :  new Sprite(360 - 47, 640 - 66, "/menu/back_button.png", true, 1, 0, false),
-	movable      :  movable.objects
+	this.background   =  new Sprite(0, 0, "/game/gameBG.jpg", true, 1, 0, false);
+	this.leftRamp1    =  new Ramp(0, -640, "/game/ramp_l.png", true, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY});
+	this.leftRamp2    =  new Ramp(0, 0, "/game/ramp_l.png", true, 1, 0, false, {x : 0 ,y : speedVariables.globalSpeedY});
+	this.rightRamp1   =  new Ramp((360 - 30), -640 , "/game/ramp_r.png", true, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY});
+	this.rightRamp2   =  new Ramp((360 - 30), 0, "/game/ramp_r.png", true, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY});
+	this.hero         =  new Hero((360 - 30 - 40), 500, "/game/bhero.png", true, 32, 0, true , {x : 8 ,y : 0});
+	this.backButton   =  new Sprite(360 - 47, 640 - 66, "/menu/back_button.png", true, 1, 0, false);
+	this.movable      =  movable.objects;
 };
 
+SpriteVariables.prototype.SetPosition = function(){
+	this.hero = new Hero((360 - 30 - 40), 500, "/game/bhero.png", true, 32, 0, true , {x : 8 ,y : 0});
 
+	for (var ctr = 0; ctr <= 5; ctr++){
+		this.movable[0][ctr].y = -100;
+		this.movable[0][ctr].isVisible = false;
+
+		this.movable[1][ctr].y = -100;
+		this.movable[1][ctr].isVisible = false;
+	}
+
+	for (var ctr = 0; ctr < 16; ctr++){
+		this.movable[2][ctr].y = -100;
+		this.movable[2][ctr].isVisible = false;
+	}
+}
+
+var spriteVariables = new SpriteVariables();
