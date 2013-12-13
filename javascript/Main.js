@@ -19,6 +19,11 @@ window.onload = function(){
 
 	gameManager = new GameManager(spriteVariables);
 	menuManager = new MenuManager(menuVariables);
+
+	// Pubsub subscription
+	radio('MenuManagerStateUpdate').subscribe([menuManager.stateChanger,menuManager]);
+	radio('GameManagerStateUpdate').subscribe([gameManager.stateChanger,gameManager]);
+
 	menuManager.paint();
 
 	window.addEventListener("click", getInput, true);
@@ -26,49 +31,39 @@ window.onload = function(){
 
 function getInput(event){
 
+		var state = null;
 		if (!menuManager.state.localeCompare('play') || !menuManager.state.localeCompare('resumed'))
 			spriteVariables.hero.onInput(event);
 
 			if(spriteVariables.backButton.isVisible && spriteVariables.backButton.Clicked(event))
 			{	
-				menuManager.state = 'pause';
-				gameManager.state = 'pause';
-				menuManager.stateController();
+				state = 'pause';
+				radio('MenuManagerStateUpdate').broadcast(state);
+				radio('GameManagerStateUpdate').broadcast(state);			
 			}
 
 		else {
 
 			if(menuVariables.backButton.isVisible && menuVariables.backButton.Clicked(event)){
-					menuManager.state = 'menu';
-					gameManager.state = 'menu';
+					state = 'menu';
 			}
 			if(menuVariables.helpButton.isVisible && menuVariables.helpButton.Clicked(event)){
-					menuManager.state = 'help';
-					gameManager.state = 'help';
+					state = 'help';
 			}		
 			if(menuVariables.aboutButton.isVisible && menuVariables.aboutButton.Clicked(event)){
-					menuManager.state = 'about';
-					gameManager.state = 'about';
+					state = 'about';
 			}
 	  		if(menuVariables.playButton.isVisible && menuVariables.playButton.Clicked(event)){			
-					menuManager.state = 'play';
-					gameManager.state = 'play';
+					state = 'play';
 			}
 			if(menuVariables.resumeButton.isVisible && menuVariables.resumeButton.Clicked(event)){
-				menuManager.state = 'resumed';
-				gameManager.state = 'resumed';
+				state = 'resumed';
 			}
 			if(menuVariables.soundButton.isVisible && menuVariables.soundButton.Clicked(event)){
-				if (soundOn){
-					soundOn = !soundOn;
-					menuVariables.soundButton.currentFrame = 1;
-
-				}else{
-					soundOn = !soundOn;
-					menuVariables.soundButton.currentFrame = 0;
-				}
+					soundOn = !soundOn;	
 			}
-			menuManager.stateController();
+				radio('MenuManagerStateUpdate').broadcast(state);
+				radio('GameManagerStateUpdate').broadcast(state);
 		}		
 		 
 }

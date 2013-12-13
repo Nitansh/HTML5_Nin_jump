@@ -32,6 +32,13 @@ MenuManager.prototype.clearScreen = function(){
 }
 
 MenuManager.prototype.stateController = function(){
+ 
+ if(soundOn){
+	menuVariables.soundButton.currentFrame = 0;
+ }else{
+ 	menuVariables.soundButton.currentFrame = 1;
+ } 
+ 
 
  if (!this.state.localeCompare('pause')){
  	menuVariables.backButton.isVisible  = false ;
@@ -94,4 +101,15 @@ if (!this.state.localeCompare('resumed')){
 
   this.paint();
 }
+
+/* 
+ * for changing the state of game using pubsub arg will be state
+ */
+
+MenuManager.prototype.stateChanger =  function(state){
+	this.state = state;
+	this.stateController();
+}
+
+
 

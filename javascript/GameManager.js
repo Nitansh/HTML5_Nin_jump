@@ -77,6 +77,15 @@ GameManager.prototype.clearScreen = function(){
 }
 
 
+/* 
+ * for changing the state of game using pubsub arg will be state
+ */
+
+GameManager.prototype.stateChanger =  function(state){
+	this.state = state;
+}
+
+
 GameManager.prototype.heroLastAnimation = function(){
 
 }
