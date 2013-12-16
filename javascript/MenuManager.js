@@ -3,7 +3,10 @@ function MenuManager(menuVariables){
 	this.context 			 = Globalcontext;
 	this.state               = 'menu';
 	this.menuVariables       = menuVariables;
-
+	this.pauseState 		 = [true, true, false, false, true, true, true, false, false, true];
+	this.menuState  		 = [true, true, false, true, true, true, true, false, false, false];
+	this.helpState  		 = [true, true, true, false, false, false, false, false, true, false];
+	this.aboutState  		 = [true, true, true, false, false, false, false, true, false, false];
 }
 
 
@@ -33,71 +36,34 @@ MenuManager.prototype.clearScreen = function(){
 
 MenuManager.prototype.stateController = function(){
  
- if(soundOn){
-	menuVariables.soundButton.currentFrame = 0;
- }else{
- 	menuVariables.soundButton.currentFrame = 1;
- } 
+ 	if(soundOn){
+		menuVariables.soundButton.currentFrame = 0;
+ 	}else{
+ 		menuVariables.soundButton.currentFrame = 1;
+ 	} 
  
 
- if (!this.state.localeCompare('pause')){
- 	menuVariables.backButton.isVisible  = false ;
-	menuVariables.playButton.isVisible  = false;
-	menuVariables.soundButton.isVisible = true;
-	menuVariables.helpButton.isVisible  = true ;
-	menuVariables.aboutButton.isVisible = true;
-	menuVariables.aboutText.isVisible   = false;
-	menuVariables.helpText.isVisible    = false;
-	menuVariables.resumeButton.isVisible= true; 
- 
- }
+ 	if (!this.state.localeCompare('pause')){
+ 	 	this.stateApply(this.pauseState);
+ 	}
 
+ 	if (!this.state.localeCompare('menu')) {
+ 		this.stateApply(this.menuState);	
+ 	}
 
- if (!this.state.localeCompare('menu')) {
- 	menuVariables.backButton.isVisible  = false ;
-	menuVariables.playButton.isVisible = true;
-	menuVariables.soundButton.isVisible = true;
-	menuVariables.helpButton.isVisible  = true ;
-	menuVariables.aboutButton.isVisible = true;
-	menuVariables.aboutText.isVisible   = false;
-	menuVariables.helpText.isVisible    = false;
-	menuVariables.resumeButton.isVisible= false; 
- }
+ 	if (!this.state.localeCompare('help')){
+ 		this.stateApply(this.helpState)	
+ 	}
 
- if (!this.state.localeCompare('help')){
- 	menuVariables.backButton.isVisible  = true ;
-	menuVariables.playButton.isVisible  = false;
-	menuVariables.soundButton.isVisible = false;
-	menuVariables.helpButton.isVisible  = false;
-	menuVariables.aboutButton.isVisible = false;
-	menuVariables.aboutText.isVisible   = false;
-	menuVariables.helpText.isVisible    = true;
-	menuVariables.resumeButton.isVisible= false; 
+ 	if (!this.state.localeCompare('about')){
+ 		this.stateApply(this.aboutState)
+ 	}
 
- }
-
- if (!this.state.localeCompare('about')){
- 	menuVariables.backButton.isVisible  = true ;
-	menuVariables.playButton.isVisible  = false;
-	menuVariables.soundButton.isVisible = false;
-	menuVariables.helpButton.isVisible  = false;
-	menuVariables.aboutButton.isVisible = false;
-	menuVariables.aboutText.isVisible   = true;
-	menuVariables.helpText.isVisible    = false;
-	menuVariables.resumeButton.isVisible= false; 
-
- }
-
-if (!this.state.localeCompare('play') && gameOn ){
-	spriteVariables.SetPosition();
-	gameOn = !gameOn;
-	if (!gameManager.isOn)
-		gameManager.initGameScene();
-}
-
-if (!this.state.localeCompare('resumed')){
-	// do nothing only state comparison will do the rest :) :D 3:)
-}
+	if (!this.state.localeCompare('play') && gameOn ){
+		// closely coupled again need to remove it
+		gameOn = !gameOn;
+		radio('GameOn').broadcast();
+	}
 
   this.paint();
 }
@@ -111,5 +77,25 @@ MenuManager.prototype.stateChanger =  function(state){
 	this.stateController();
 }
 
+ /* 
+  * paint only that sprite which is visible :) 
+  */
+
+MenuManager.prototype.stateApply = function(array){
+	var counter = 0;
+	for (var menuObject in this.menuVariables){
+		if (this.menuVariables[menuObject].length){
+					for (var ctr_type = 0; ctr_type < this.menuVariables[menuObject].length; ctr_type++){
+						for (var ctr_no = 0; ctr_no < this.menuVariables[menuObject][ctr_type].length; ctr_no++){
+							// paint function
+							this.menuVariables[menuObject][ctr_type][ctr_no].isVisible = array[counter];
+						}
+					}
+		}else{
+			   this.menuVariables[menuObject].isVisible = array[counter];			
+		 }
+		 counter++;
+	}
+}
 
 

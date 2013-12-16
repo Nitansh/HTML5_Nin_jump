@@ -46,7 +46,7 @@ GameManager.prototype.update = function(){
 
 		}
 
-
+		// closely decoupled need to remove this :) :)
 		if (speedVariables.heroDied){
 			this.state = 'menu';
 			menuManager.state  = 'menu';
@@ -61,13 +61,17 @@ GameManager.prototype.update = function(){
 }
 
 GameManager.prototype.initGameScene = function(){
-	this.isOn = true;
-	self = this;		
-	(function animloop(){
-						this.requestID = requestAnimFrame(animloop);  // equal to the set Interval
-						self.update();
-					})();
+	
+    spriteVariables.SetPosition();
+    if (!this.isOn){
+		this.isOn = true;
+		self = this;		
+		(function animloop(){
+							this.requestID = requestAnimFrame(animloop);  // equal to the set Interval
+							self.update();
+						})();
 	}
+}
 
 GameManager.prototype.clearScreen = function(){
 	this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -83,16 +87,6 @@ GameManager.prototype.clearScreen = function(){
 
 GameManager.prototype.stateChanger =  function(state){
 	this.state = state;
-}
-
-
-GameManager.prototype.heroLastAnimation = function(){
-
-}
-
-GameManager.prototype.heroDiedAnimation = function(){
-
-	
 }
 
 

@@ -23,6 +23,7 @@ window.onload = function(){
 	// Pubsub subscription
 	radio('MenuManagerStateUpdate').subscribe([menuManager.stateChanger,menuManager]);
 	radio('GameManagerStateUpdate').subscribe([gameManager.stateChanger,gameManager]);
+	radio('GameOn').subscribe([gameManager.initGameScene,gameManager]);
 
 	menuManager.paint();
 
@@ -61,9 +62,13 @@ function getInput(event){
 			}
 			if(menuVariables.soundButton.isVisible && menuVariables.soundButton.Clicked(event)){
 					soundOn = !soundOn;	
+					state = 'menu';
 			}
+
+			if (null !=  state){ 
 				radio('MenuManagerStateUpdate').broadcast(state);
-				radio('GameManagerStateUpdate').broadcast(state);
+		    	radio('GameManagerStateUpdate').broadcast(state);
+		    }
 		}		
 		 
 }

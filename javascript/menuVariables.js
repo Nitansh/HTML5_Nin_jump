@@ -11,3 +11,9 @@ var menuVariables = {
 	aboutText  :  new Sprite(0, (640 - 316)/2, "/menu/about_text.png", false, 1, 0, false),
 	resumeButton: new Sprite((360 - 66)/2, (640 -316)/2, "/menu/resume.png",false,1, 0, false)
 };
+
+
+pauseState = [true, true, true, true, true, true, true, true,];
+menuState  = [true, true, true, true, true, true, true, true,];
+helpState  = [true, true, true, true, true, true, true, true,];
+aboutState  = [true, true, true, true, true, true, true, true,];
