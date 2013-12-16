@@ -159,13 +159,14 @@ Hero.prototype.collisionLogic = function(){
 
 Hero.prototype.updateObject = function(obj, visiblility){
 	if (!visiblility){
-		obj.y = -100;
-		obj.isVisible = false;
 		this.updateCoinCount();
 	}else{
 		this.heroFalling = true;
+		radio('HeroDieing').broadcast();
 	}
-
+	
+	obj.isVisible = false;
+	obj.y = -100;
 }
 
 

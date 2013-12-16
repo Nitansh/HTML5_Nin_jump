@@ -21,9 +21,11 @@ window.onload = function(){
 	menuManager = new MenuManager(menuVariables);
 
 	// Pubsub subscription
-	radio('MenuManagerStateUpdate').subscribe([menuManager.stateChanger,menuManager]);
-	radio('GameManagerStateUpdate').subscribe([gameManager.stateChanger,gameManager]);
-	radio('GameOn').subscribe([gameManager.initGameScene,gameManager]);
+	radio('MenuManagerStateUpdate').subscribe([menuManager.stateChanger, menuManager]);
+	radio('GameManagerStateUpdate').subscribe([gameManager.stateChanger, gameManager]);
+	radio('GameOn').subscribe([gameManager.initGameScene, gameManager]);
+	radio('HeroDieing').subscribe([gameManager.speedToggle, gameManager]);
+	radio('HeroDied').subscribe([gameManager.speedToggle, gameManager],[gameManager.boolToggle, gameManager]);
 
 	menuManager.paint();
 

@@ -21,3 +21,7 @@ Coin.prototype.update = function(){
 		}
 	}
 }
+
+Coin.prototype.speedToggle = function(){
+	this.speedY = -this.speedY;
+}

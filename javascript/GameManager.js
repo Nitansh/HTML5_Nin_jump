@@ -16,12 +16,12 @@ GameManager.prototype.paint = function() {
 					for (var ctr_type = 0; ctr_type < this.spriteVariables[spriteObject].length; ctr_type++){
 						for (var ctr_no = 0; ctr_no < this.spriteVariables[spriteObject][ctr_type].length; ctr_no++){
 							// paint function
-							if (typeof this.spriteVariables[spriteObject][ctr_type][ctr_no].paint == 'function')
+							if (typeof this.spriteVariables[spriteObject][ctr_type][ctr_no].paint === 'function')
 								this.spriteVariables[spriteObject][ctr_type][ctr_no].paint(this.context);
 						}
 					}
 		}else{
-				if (typeof this.spriteVariables[spriteObject].paint == 'function')
+				if (typeof this.spriteVariables[spriteObject].paint === 'function')
 			        this.spriteVariables[spriteObject].paint(this.context);			
 		 }
 	}
@@ -35,24 +35,21 @@ GameManager.prototype.update = function(){
 					for (var ctr_type = 0; ctr_type < this.spriteVariables[spriteObject].length; ctr_type++){
 							for (var ctr_no = 0; ctr_no < this.spriteVariables[spriteObject][ctr_type].length; ctr_no++){
 								//update function
-								if (typeof this.spriteVariables[spriteObject][ctr_type][ctr_no].update == 'function')
+								if (typeof this.spriteVariables[spriteObject][ctr_type][ctr_no].update === 'function')
 									this.spriteVariables[spriteObject][ctr_type][ctr_no].update();
 							}
 						}
 			}else{
-						if (typeof this.spriteVariables[spriteObject].update == 'function')
+						if (typeof this.spriteVariables[spriteObject].update === 'function')
 							this.spriteVariables[spriteObject].update();			
 			}
 
 		}
 
-		// closely decoupled need to remove this :) :)
 		if (speedVariables.heroDied){
-			this.state = 'menu';
-			menuManager.state  = 'menu';
-			menuManager.stateController();
-			speedVariables.heroDied = !speedVariables.heroDied;
-			gameOn = !gameOn;
+			radio('MenuManagerStateUpdate').broadcast('menu');
+		    radio('GameManagerStateUpdate').broadcast('menu');
+			radio('HeroDied').broadcast();
 		}else{
 			this.paint();														//Calling the paint function on regular interval with update
 			this.objectController();
@@ -162,6 +159,28 @@ GameManager.prototype.objectController = function(){
  	}	
 }
 
+GameManager.prototype.speedToggle = function(){
+
+	for (var spriteObject in this.spriteVariables){
+			if (this.spriteVariables[spriteObject].length){
+					for (var ctr_type = 0; ctr_type < this.spriteVariables[spriteObject].length; ctr_type++){
+							for (var ctr_no = 0; ctr_no < this.spriteVariables[spriteObject][ctr_type].length; ctr_no++){
+								//update function
+								if (typeof this.spriteVariables[spriteObject][ctr_type][ctr_no].speedToggle === 'function')
+									this.spriteVariables[spriteObject][ctr_type][ctr_no].speedToggle();
+							}
+						}
+			}else{
+						if (typeof this.spriteVariables[spriteObject].speedToggle === 'function')
+							this.spriteVariables[spriteObject].speedToggle();			
+			}
+	}
+}
+
+GameManager.prototype.boolToggle =  function(){
+	speedVariables.heroDied = !speedVariables.heroDied;
+	gameOn = !gameOn;
+}
 
 window.requestAnimFrame = (function(){
 					return  window.requestAnimationFrame ||

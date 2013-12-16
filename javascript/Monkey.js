@@ -23,4 +23,6 @@ Monkey.prototype.update = function(){
 	}
 }
 
-
+Monkey.prototype.speedToggle = function(){
+	this.speedY = -this.speedY;
+}

@@ -79,6 +79,10 @@ function Sprite(positionX, positionY, imageUrl, isVisible, frameCount, rowcount,
 					
 				}
 
+				Sprite.prototype.toggleSpeed = function(){
+					this.y = - this.y;
+				}
+
 				Sprite.prototype.Clicked = function(event){
 					var MouseX = event.pageX;
 					var MouseY = event.pageY ;

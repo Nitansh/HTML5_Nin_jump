@@ -20,3 +20,6 @@ Halloween.prototype.update = function(){
 	}
 }
 
+Halloween.prototype.speedToggle = function(){
+	this.speedY = -this.speedY;
+}
