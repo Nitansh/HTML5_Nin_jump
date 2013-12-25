@@ -4,6 +4,7 @@ function ParticleSystem(centre, count , rgb){
 	this.centre = centre;
 	this.rgb = rgb;
 	this.count = count;
+	this.gravity = 2;
 	this.context = document.getElementById("gameCanvas").getContext('2d');
 	this.init(this.centre, count)
 

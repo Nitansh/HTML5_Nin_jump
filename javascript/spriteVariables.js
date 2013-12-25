@@ -47,6 +47,7 @@ movable = new movableObject();
 function SpriteVariables() {
 	//Sprite(positionX, positionY, imageUrl, isVisible, frameCount, rowCount, isAnimated) generic code :D :D
 	this.background   =  new Sprite(0, 0, "/game/gameBG.jpg", true, 1, 0, false);
+	this.p2           =  new Cracker();
 	this.leftRamp1    =  new Ramp(0, -640, "/game/ramp_l.png", true, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY});
 	this.leftRamp2    =  new Ramp(0, 0, "/game/ramp_l.png", true, 1, 0, false, {x : 0 ,y : speedVariables.globalSpeedY});
 	this.rightRamp1   =  new Ramp((360 - 30), -640 , "/game/ramp_r.png", true, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY});
@@ -54,7 +55,7 @@ function SpriteVariables() {
 	this.hero         =  new Hero((360 - 30 - 40), 500, "/game/bhero.png", true, 32, 0, true , {x : 8 ,y : 0});
 	this.backButton   =  new Sprite(360 - 47, 640 - 66, "/menu/back_button.png", true, 1, 0, false);
 	this.movable      =  movable.objects;
-	this.p1           =  new HeroParticleSystem({x:360-30, y:500 + 40}, 50, {red:227, green:140, blue:45}); 
+	this.p1           =  new HeroParticleSystem({x:360-30, y:500 + 40}, 50, {red:227, green:140, blue:45});	
 };
 
 SpriteVariables.prototype.SetPosition = function(){
