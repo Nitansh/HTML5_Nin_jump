@@ -64,7 +64,7 @@ GameManager.prototype.initGameScene = function(){
 		this.isOn = true;
 		self = this;		
 		(function animloop(){
-							this.requestID = requestAnimFrame(animloop);  // equal to the set Interval
+							requestAnimFrame(animloop);  // equal to the set Interval
 							self.update();
 						})();
 	}

@@ -15,9 +15,6 @@ function Cracker(){
 		this.ch   = 640;
 }
 
-
-
-
 Cracker.prototype.random = function( min, max ) {
 	return Math.random() * ( max - min ) + min;
 }
@@ -101,7 +98,6 @@ Firework.prototype.update = function( index, hue) {
 
 // draw firework
 Firework.prototype.draw = function(ctx, hue) {
-
 
 	var i = particles.length;
 	while( i-- ) {
@@ -213,8 +209,6 @@ Firework.prototype.createParticles= function( x, y ) {
 	// increase the hue to get different colored fireworks over time
 	this.hue += 0.5;
 	
-	
-	
 	var i = fireworks.length;
 	while( i-- ) {
 		fireworks[ i ].update( i , this.hue);
@@ -227,9 +221,7 @@ Firework.prototype.createParticles= function( x, y ) {
 			fireworks.push( new Firework( this.cw / 2, this.ch - 50 , i, j) );
 			this.timerTick = 0;
 	}
-
 	this.timerTick++;
-		
 }
 
 Cracker.prototype.paint = function(){
@@ -242,12 +234,7 @@ Cracker.prototype.paint = function(){
 	while( i-- ) {
 		fireworks[ i ].draw(this.ctx, this.hue);
 	}
-
 	
 	this.ctx.globalCompositeOperation = temp_composite;
 	this.ctx.fillStyle = temp_fillStyle;
-
 }
-
-
-
