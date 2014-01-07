@@ -9,7 +9,6 @@ function Halloween(positionX, positionY, imageUrl, isVisible, frameCount, rowCou
 
 Halloween.prototype = Object.create(Sprite.prototype);
 
-
 Halloween.prototype.update = function(){
 
 	if (this.isVisible){

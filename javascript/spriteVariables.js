@@ -33,8 +33,8 @@ movableObject.prototype.init = function(){
 			this.halloweenObject.push(new Halloween((360 - 30 - 55), -100, "/game/hell.png", false, 2, 0, true , {x : 0 ,y : ySpeed}));
 	}
 	
-	for (var ctr = 0; ctr < 16; ctr++){
-		if ( ctr < 8)
+	for (var ctr = 0; ctr < 20; ctr++){
+		if ( ctr < 10)
 			this.coinObject.push(new Coin((360 - 30 - 40), -100, "/game/coin_Anim.png", false, 8, 8, true , {x : 0 ,y :ySpeed }));
 		else
 			this.coinObject.push(new Coin(30, -100, "/game/coin_Anim.png", false, 8, 8, true , {x : 0 ,y :ySpeed }));

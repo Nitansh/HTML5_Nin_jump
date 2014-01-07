@@ -60,7 +60,6 @@ MenuManager.prototype.stateController = function(){
  	}
 
 	if (!this.state.localeCompare('play') && gameOn ){
-		// closely coupled again need to remove it
 		gameOn = !gameOn;
 		radio('GameOn').broadcast();
 	}

@@ -96,65 +96,52 @@ GameManager.prototype.objectController = function(){
 
 	if (0 == speedVariables.numberOfFrame % speedVariables.objectFrequency){
 		// Generating the object ALgorithm 
-		
-		//Genrating the monkey
-
 		var rand1 = Math.floor(Math.random() * (speedVariables.monkeyProb + 1));
 		var rand2 = Math.floor(Math.random() * (speedVariables.halloweenProb + 1));
 		var rand3 = Math.floor(Math.random() * (speedVariables.coinProb+ 1));
+		var rand4 = Math.floor(Math.random() * (speedVariables.void_obj+ 1));
 
-		random = rand1 + rand2 + rand3;
+
+		random = rand1 + rand2 + rand3 + rand4 ;
 
 		random = random + speedVariables.startRandomIndex;
 		
-		if (speedVariables.coinInProgess)
-		{
-
-			console.log(speedVariables.coinCount);
-			console.log(speedVariables.coinIndex);
-
-		}else
-		console.log("Something have to be genrated random number is " + random +  "coin genration bool" +  speedVariables.coinInProgess );
-
-
+		//Genrating the monkey
 		if (speedVariables.startRandomIndex < random &&  random <= (speedVariables.startRandomIndex+speedVariables.monkeyProb) && !speedVariables.coinInProgess){
 			random = Math.floor(Math.random() * 6)
 			if (!this.spriteVariables.movable[0][random]['isVisible']){
 				this.spriteVariables.movable[0][random]['isVisible'] = true;
-			}else{
-				// Genrate the power
 			}
-			
+		//Genrating the halloween	
 		}else if ( (speedVariables.startRandomIndex + speedVariables.monkeyProb) < random && random <= (speedVariables.startRandomIndex + speedVariables.monkeyProb + speedVariables.halloweenProb) && !speedVariables.coinInProgess){
 			random = Math.floor(Math.random() * 6)
 			if (!this.spriteVariables.movable[1][random]['isVisible']){
 				this.spriteVariables.movable[1][random]['isVisible'] = true;
-			}else{
-				// Genrate the power
 			}
 
 		}else if ( (speedVariables.startRandomIndex + speedVariables.monkeyProb + speedVariables.halloweenProb) < random && random <= (speedVariables.startRandomIndex + speedVariables.monkeyProb + speedVariables.halloweenProb + speedVariables.coinProb) || speedVariables.coinInProgess){			
 			
 			if (!speedVariables.coinInProgess){
-
 				random1 = Math.floor(Math.random() *  2);
 				random1 =  random1 + 1;
-				speedVariables.coinCount     = 4 * random1;
+				speedVariables.coinCount     = 5 * random1;
 				speedVariables.coinInProgess = true;
-				speedVariables.objectFrequency = 12;
-			}
+				speedVariables.objectFrequency = 8;
+				}
 			
+			if (speedVariables.coinIndex >= speedVariables.coinCount){
+     			speedVariables.coinInProgess = false;
+				speedVariables.coinIndex = 0;
+				speedVariables.objectFrequency = 50;
+			}	
 
 			this.spriteVariables.movable[2][(8  * (random1-1))  + speedVariables.coinIndex]['isVisible'] = true;
 			speedVariables.coinIndex++;
+
+		}else if ( (speedVariables.startRandomIndex + speedVariables.monkeyProb + speedVariables.halloweenProb + speedVariables.coinProb) < random && random <= (speedVariables.startRandomIndex + speedVariables.monkeyProb + speedVariables.halloweenProb + speedVariables.coinProb + speedVariables.void_obj)){			
 			
+			// Do nothing :D :D since the game part need to be empty somewhere in between
 
-			if (speedVariables.coinIndex >= speedVariables.coinCount){
-
-				speedVariables.coinInProgess = false;
-				speedVariables.coinIndex = 0;
-				speedVariables.objectFrequency = 20;
-			}		
 		}
  	}	
 }

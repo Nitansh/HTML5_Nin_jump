@@ -48,23 +48,23 @@ function getInput(event){
 		else {
 
 			if(menuVariables.backButton.isVisible && menuVariables.backButton.Clicked(event)){
-					state = 'menu';
+				state = 'menu';
 			}
 			if(menuVariables.helpButton.isVisible && menuVariables.helpButton.Clicked(event)){
-					state = 'help';
+				state = 'help';
 			}		
 			if(menuVariables.aboutButton.isVisible && menuVariables.aboutButton.Clicked(event)){
-					state = 'about';
+				state = 'about';
 			}
 	  		if(menuVariables.playButton.isVisible && menuVariables.playButton.Clicked(event)){			
-					state = 'play';
+				state = 'play';
 			}
 			if(menuVariables.resumeButton.isVisible && menuVariables.resumeButton.Clicked(event)){
 				state = 'resumed';
 			}
 			if(menuVariables.soundButton.isVisible && menuVariables.soundButton.Clicked(event)){
-					soundOn = !soundOn;	
-					state = 'menu';
+				soundOn = !soundOn;	
+				state = 'menu';
 			}
 
 			if (null !=  state){ 
