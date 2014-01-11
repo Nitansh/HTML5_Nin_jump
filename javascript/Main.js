@@ -26,19 +26,21 @@ window.onload = function(){
 	radio('GameOn').subscribe([gameManager.initGameScene, gameManager]);
 	radio('HeroDieing').subscribe([gameManager.speedToggle, gameManager]);
 	radio('HeroDied').subscribe([gameManager.speedToggle, gameManager],[gameManager.boolToggle, gameManager]);
+	radio('TogglePauseButton').subscribe([gameManager.pauseVisiblityToggle,gameManager]);
 
 	menuManager.paint();
 
-	window.addEventListener("click", getInput, true);
+	window.addEventListener("click", getInput, false);
 };
 
 function getInput(event){
 
+		event.preventDefault();
 		var state = null;
-		if (!menuManager.state.localeCompare('play') || !menuManager.state.localeCompare('resumed'))
+		if (menuManager.state.localeCompare('play') || menuManager.state.localeCompare('resumed'))
 			spriteVariables.hero.onInput(event);
 
-			if(spriteVariables.backButton.isVisible && spriteVariables.backButton.Clicked(event))
+			if(spriteVariables.backButton.isVisible && !spriteVariables.hero.heroFalling && spriteVariables.backButton.Clicked(event))
 			{	
 				state = 'pause';
 				radio('MenuManagerStateUpdate').broadcast(state);
@@ -46,7 +48,13 @@ function getInput(event){
 			}
 
 		else {
-
+			if(menuVariables.main_menu.isVisible && menuVariables.main_menu.Clicked(event)){
+				state = 'menu';
+				// Make the Hero fall so we can reuse the previous code and logic
+				radio('HeroDieing').broadcast();
+				speedVariables.heroDied =  true;
+				radio('HeroDied').broadcast();
+			}
 			if(menuVariables.backButton.isVisible && menuVariables.backButton.Clicked(event)){
 				state = 'menu';
 			}
@@ -73,4 +81,5 @@ function getInput(event){
 		    }
 		}		
 		 
+		event.preventDefault();
 }

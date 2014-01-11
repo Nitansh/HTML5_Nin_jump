@@ -50,10 +50,11 @@ GameManager.prototype.update = function(){
 			radio('MenuManagerStateUpdate').broadcast('menu');
 		    radio('GameManagerStateUpdate').broadcast('menu');
 			radio('HeroDied').broadcast();
+			radio('TogglePauseButton').broadcast();
 		}else{
 			this.paint();														//Calling the paint function on regular interval with update
-			this.objectController();
-		}											//Calling the objectController function on regular interval with update
+			this.objectController();											//Calling the objectController function on regular interval with update
+		}											
 	}
 }
 
@@ -85,7 +86,13 @@ GameManager.prototype.clearScreen = function(){
 GameManager.prototype.stateChanger =  function(state){
 	this.state = state;
 }
+/*
+ * for toggling the pause visiblity
+ */
 
+GameManager.prototype.pauseVisiblityToggle =  function(){
+	spriteVariables.backButton.isVisible = !spriteVariables.backButton.isVisible;
+}
 
 
 /************
@@ -139,6 +146,10 @@ GameManager.prototype.objectController = function(){
 			speedVariables.coinIndex++;
 
 		}else if ( (speedVariables.startRandomIndex + speedVariables.monkeyProb + speedVariables.halloweenProb + speedVariables.coinProb) < random && random <= (speedVariables.startRandomIndex + speedVariables.monkeyProb + speedVariables.halloweenProb + speedVariables.coinProb + speedVariables.void_obj)){			
+			
+			// Do nothing :D :D since the game part need to be empty somewhere in between
+
+		}else if ( (speedVariables.startRandomIndex + speedVariables.monkeyProb + speedVariables.halloweenProb + speedVariables.coinProb  + speedVariables.void_obj) < random && random <= (speedVariables.startRandomIndex + speedVariables.monkeyProb + speedVariables.halloweenProb + speedVariables.coinProb + speedVariables.void_obj + speedVariables.power)){			
 			
 			// Do nothing :D :D since the game part need to be empty somewhere in between
 

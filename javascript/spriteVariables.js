@@ -53,10 +53,11 @@ function SpriteVariables() {
 	this.rightRamp1   =  new Ramp((360 - 30), -640 , "/game/ramp_r.png", true, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY});
 	this.rightRamp2   =  new Ramp((360 - 30), 0, "/game/ramp_r.png", true, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY});
 	this.hero         =  new Hero((360 - 30 - 40), 500, "/game/bhero.png", true, 32, 0, true , {x : 8 ,y : 0});
-	this.backButton   =  new Sprite(360 - 47, 640 - 66, "/menu/back_button.png", true, 1, 0, false);
+	this.backButton   =  new Sprite(360 - 19, 640 - 23, "/game/pause.png", true, 1, 0, false);
 	this.movable      =  movable.objects;
 	this.p1           =  new HeroParticleSystem({x:360-30, y:500 + 40}, 50, {red:227, green:140, blue:45});
-	this.p3           =  new SnowParticleSystem({x:360, y:640}, 50, {red:255, green:155, blue:255});	
+	this.p3           =  new SnowParticleSystem({x:360, y:640}, 50, {red:248, green:248, blue:255});
+		
 };
 
 SpriteVariables.prototype.SetPosition = function(){

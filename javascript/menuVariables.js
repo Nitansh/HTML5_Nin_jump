@@ -9,5 +9,6 @@ var menuVariables = {
 	aboutButton:  new Sprite(0, (640 - 316)/2, "/menu/about.png", true, 1, 0, false),
 	helpText   :  new Sprite(0, (640 - 316)/2, "/menu/help_text.png", false, 1, 0, false),
 	aboutText  :  new Sprite(0, (640 - 316)/2, "/menu/about_text.png", false, 1, 0, false),
-	resumeButton: new Sprite((360 - 66)/2, (640 -316)/2, "/menu/resume.png",false,1, 0, false)
+	resumeButton: new Sprite((360 - 181)/2, (640)/2 - 80 , "/game/resume.png",false, 1, 0, false),
+	main_menu :   new Sprite((360 - 181)/2, (640)/2 + 40, "/game/main_menu.png",false, 1, 0, false)
 };

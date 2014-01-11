@@ -3,16 +3,16 @@ function MenuManager(menuVariables){
 	this.context 			 = Globalcontext;
 	this.state               = 'menu';
 	this.menuVariables       = menuVariables;
-	this.pauseState 		 = [true, true, false, false, true, true, true, false, false, true];
-	this.menuState  		 = [true, true, false, true, true, true, true, false, false, false];
-	this.helpState  		 = [true, true, true, false, false, false, false, false, true, false];
-	this.aboutState  		 = [true, true, true, false, false, false, false, true, false, false];
+	this.pauseState 		 = [false,true, false, false, false, false, false, false, false, true, true];
+	this.menuState  		 = [true, true, false, true, true, true, true, false, false, false,   false];
+	this.helpState  		 = [true, true, true, false, false, false, false, false, true, false, false];
+	this.aboutState  		 = [true, true, true, false, false, false, false, true, false, false, false];
 }
 
 
 MenuManager.prototype.paint = function() {
-	
-	this.clearScreen();
+	if (this.state != 'pause')
+		this.clearScreen();
 	for (var menuObject in this.menuVariables){
 		if (this.menuVariables[menuObject].length){
 					for (var ctr_type = 0; ctr_type < this.menuVariables[menuObject].length; ctr_type++){

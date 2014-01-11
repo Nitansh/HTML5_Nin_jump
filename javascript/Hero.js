@@ -161,6 +161,7 @@ Hero.prototype.updateObject = function(obj, visiblility){
 	if (!visiblility){
 		this.updateCoinCount();
 	}else{
+		radio('TogglePauseButton').broadcast();
 		this.heroFalling = true;
 		radio('HeroDieing').broadcast();
 	}
