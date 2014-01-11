@@ -57,7 +57,8 @@ function SpriteVariables() {
 	this.movable      =  movable.objects;
 	this.p1           =  new HeroParticleSystem({x:360-30, y:500 + 40}, 50, {red:227, green:140, blue:45});
 	this.p3           =  new SnowParticleSystem({x:360, y:640}, 50, {red:248, green:248, blue:255});
-		
+	this.rocket       =  new Rocket((360 - 30 - 32), -100, "/game/rocket.png", false, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY});
+	this.sheild       =  new Sheild((360 - 30 - 27), -120, "/game/sheild_icon.png", false, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY});		
 };
 
 SpriteVariables.prototype.SetPosition = function(){

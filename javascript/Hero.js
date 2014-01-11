@@ -14,6 +14,9 @@ function Hero(positionX, positionY, imageUrl, isVisible, frameCount, rowCount, i
 	this.newImage = null ;
 	this.coinNumber = 0;
 	this.heroFalling = false;
+	this.rocketPower = false;
+	this.shieldPower = false;
+	this.autoPilot   = false;
 	this.Animation(0);
 }
 
@@ -140,7 +143,7 @@ Hero.prototype.rightToLeftAnimation = function(){
 Hero.prototype.collisionLogic = function(){
 	for (var spriteObject in spriteVariables){
 		if (spriteVariables[spriteObject].length){
-			for (var ctr_type = 0; ctr_type < spriteVariables[spriteObject].length; ctr_type++){
+			for (var ctr_type = 0; ctr_type < spriteVariables[spriteObject].length; ctr_type++){	
 				for (var ctr_no = 0; ctr_no < spriteVariables[spriteObject][ctr_type].length; ctr_no++){
 					//update function
 					if(this.collidesWith(spriteVariables[spriteObject][ctr_type][ctr_no])){
@@ -151,7 +154,13 @@ Hero.prototype.collisionLogic = function(){
 						}
 					}
 				}
+			
 			}
+		}
+		else{
+			if(spriteVariables[spriteObject].isPower && this.collidesWith(spriteVariables[spriteObject])){
+				this.powerObject(spriteVariables[spriteObject]);
+			} 
 		}	
 	}	
 }
@@ -170,6 +179,24 @@ Hero.prototype.updateObject = function(obj, visiblility){
 	obj.y = -100;
 }
 
+Hero.prototype.powerObject = function(power){
+
+	power.isVisible = false;
+	power.y =  -100;
+
+	if (power instanceof Rocket){
+		this.rocketPower = true;
+	}
+
+	if (power instanceof Sheild){
+		this.shieldPower = true;
+	}
+
+	if (power instanceof AutoPilot){
+		this.autoPilot = true;
+	}
+
+}
 
 Hero.prototype.heroTata = function(){
 
