@@ -6,6 +6,7 @@ function Monkey(positionX, positionY, imageUrl, isVisible, frameCount, rowCount,
 	this.base(positionX, positionY, imageUrl, isVisible, frameCount, rowCount, isAnimated);
 	this.speedX   = speed.x;
 	this.speedY   = speed.y; 
+	this.isObstacle  = true;
 	this.frameThreshold = frameCount;
 }
 
@@ -14,8 +15,14 @@ Monkey.prototype = Object.create(Sprite.prototype);
 
 Monkey.prototype.update = function(){
 
-	this.y = ((this.y < (640 - this.speedY)) ? (this.y + this.speedY) : -this.Height);
-	
+	if (this.isVisible){
+		this.y = ((this.y < (640 - this.speedY)) ? (this.y + this.speedY) : (-100));
+		if ((-100) == this.y){
+			this.isVisible = false;
+		}
+	}
 }
 
-
+Monkey.prototype.speedToggle = function(){
+	this.speedY = -this.speedY;
+}
