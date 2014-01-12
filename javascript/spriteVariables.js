@@ -55,10 +55,12 @@ function SpriteVariables() {
 	this.hero         =  new Hero((360 - 30 - 40), 500, "/game/bhero.png", true, 32, 0, true , {x : 8 ,y : 0});
 	this.backButton   =  new Sprite(360 - 19, 640 - 23, "/game/pause.png", true, 1, 0, false);
 	this.movable      =  movable.objects;
-	this.p1           =  new HeroParticleSystem({x:360-30, y:500 + 40}, 50, {red:227, green:140, blue:45});
-	this.p3           =  new SnowParticleSystem({x:360, y:640}, 50, {red:248, green:248, blue:255});
-	this.rocket       =  new Rocket((360 - 30 - 32), -100, "/game/rocket.png", false, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY});
-	this.sheild       =  new Sheild((360 - 30 - 27), -120, "/game/sheild_icon.png", false, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY});		
+	//this.p1           =  new HeroParticleSystem({x:360-30, y:500 + 40}, 50, {red:227, green:140, blue:45});
+	//this.p3           =  new SnowParticleSystem({x:360, y:640}, 50, {red:248, green:248, blue:255});
+	this.rocket       =  new Rocket((360 - 32)/2, -100, "/game/rocket.png", false, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY});
+	this.sheild       =  new Sheild((360 - 30 - 27), -120, "/game/sheild_icon.png", false, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY});
+	this.rocketHero   =  new RocketHero((360 - 32)/2, this.hero.y - 45 , "/game/hero_R.png",false, 2, 0, true,  {x : 5, y : 0});
+	this.heroSheild   =  new HeroSheild(this.hero.x  - 100 , this.hero.y - 100, "/game/sheild.png", false, 1, 0, false); 		
 };
 
 SpriteVariables.prototype.SetPosition = function(){

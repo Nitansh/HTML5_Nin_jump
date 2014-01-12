@@ -150,10 +150,10 @@ GameManager.prototype.objectController = function(){
 			
 			// Do nothing :D :D since the game part need to be empty somewhere in between
 
-		}else if ( (speedVariables.startRandomIndex + speedVariables.monkeyProb + speedVariables.halloweenProb + speedVariables.coinProb  + speedVariables.void_obj) < random && random <= (speedVariables.startRandomIndex + speedVariables.monkeyProb + speedVariables.halloweenProb + speedVariables.coinProb + speedVariables.void_obj + speedVariables.powerProb)){			
-			if (Math.random() * 10 < 5)
-				spriteVariables.rocket.isVisible = true;
-			else
+		}else if (!(spriteVariables.rocketHero.isVisible || spriteVariables.heroSheild.isVisible) && (speedVariables.startRandomIndex + speedVariables.monkeyProb + speedVariables.halloweenProb + speedVariables.coinProb  + speedVariables.void_obj) < random && random <= (speedVariables.startRandomIndex + speedVariables.monkeyProb + speedVariables.halloweenProb + speedVariables.coinProb + speedVariables.void_obj + speedVariables.powerProb)){			
+			//if (Math.random() * 10 < 5)
+			//	spriteVariables.rocket.isVisible = true;
+			//else
 				spriteVariables.sheild.isVisible = true;
 
 		}

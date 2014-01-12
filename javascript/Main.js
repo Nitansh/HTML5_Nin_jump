@@ -27,7 +27,8 @@ window.onload = function(){
 	radio('HeroDieing').subscribe([gameManager.speedToggle, gameManager]);
 	radio('HeroDied').subscribe([gameManager.speedToggle, gameManager],[gameManager.boolToggle, gameManager]);
 	radio('TogglePauseButton').subscribe([gameManager.pauseVisiblityToggle,gameManager]);
-
+	radio('HeroRocketPower').subscribe([spriteVariables.rocketHero.visiblityToggle, spriteVariables.rocketHero]);
+	radio('HeroShieldOn').subscribe([spriteVariables.heroSheild.visiblityToggle, spriteVariables.heroSheild]);
 	menuManager.paint();
 
 	window.addEventListener("click", getInput, false);

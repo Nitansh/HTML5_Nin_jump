@@ -15,17 +15,34 @@ function Hero(positionX, positionY, imageUrl, isVisible, frameCount, rowCount, i
 	this.coinNumber = 0;
 	this.heroFalling = false;
 	this.rocketPower = false;
+	this.rocketPowerCtr =  speedVariables.rocketPowerCtr;
+	this.sheildPowerCtr =  speedVariables.sheildPowerCtr;
 	this.shieldPower = false;
 	this.autoPilot   = false;
 	this.Animation(0);
+
 }
 
 Hero.prototype = Object.create(Sprite.prototype);
 
-
 Hero.prototype.update = function(){
 
 	this.collisionLogic();
+	
+	if (this.rocketPower && --this.rocketPowerCtr <= 0){
+		this.rocketPower = !this.rocketPower;
+		this.rocketPowerCtr = speedVariables.rocketPowerCtr;
+		this.isVisible = true;
+		this.rocketEndAnimation();
+		radio('HeroRocketPower').broadcast();
+	}
+
+	if (this.shieldPower && --this.sheildPowerCtr <= 0 ){
+		this.shieldPower = !this.shieldPower;
+		this.sheildPowerCtr = speedVariables.sheildPowerCtr;
+		radio('HeroShieldOn').broadcast();
+	}
+
 	if (this.heroFalling){
 		this.heroTata();
 	}
@@ -39,15 +56,13 @@ Hero.prototype.update = function(){
 
 }
 
-
 Hero.prototype.onInput = function(evnt){
 
 
-	if (!this.inAir && !this.heroFalling){		
+	if (!this.inAir && !this.heroFalling && !this.rocketPower){		
 		this.inAir = !this.inAir;
 	}
 }
-
 
 Hero.prototype.Animation = function(Anim){
 
@@ -93,7 +108,6 @@ Hero.prototype.Animation = function(Anim){
 			alert("No Such animation found");
 		}
 	}
-
 }
 
 Hero.prototype.leftToRightAnimation = function(){
@@ -186,14 +200,13 @@ Hero.prototype.powerObject = function(power){
 
 	if (power instanceof Rocket){
 		this.rocketPower = true;
+		this.isVisible = false;
+		radio('HeroRocketPower').broadcast();
 	}
 
 	if (power instanceof Sheild){
 		this.shieldPower = true;
-	}
-
-	if (power instanceof AutoPilot){
-		this.autoPilot = true;
+		radio('HeroShieldOn').broadcast();
 	}
 
 }
@@ -216,12 +229,33 @@ Hero.prototype.heroTata = function(){
 
 }
 
+Hero.prototype.rocketEndAnimation = function(){
+	this.inAir = true;
+	if (this.x < 360/2){
+		this.isRight = true;
+		this.isLeft = false;	
+	}else{
+		this.isRight = false;
+		this.isLeft = true;			
+	}
+	
+}
+
 Hero.prototype.updateCoinCount= function(){
 	this.coinNumber++;
 }
 
 Hero.prototype.collidesWith = function(obj){
 	
+	if (this.shieldPower && obj.isObstacle){
+		if ( (this.x + this.Width > obj.x + obj.Width/2) && ( this.x  < obj.x + obj.Width/2) && (this.y < obj.y + obj.Height)) {
+			obj.y = -100;
+			obj.isVisible = false;
+			this.sheildPowerCtr = -2;
+		}
+		return false;
+	}
+
 	if ( (this.x + this.Width > obj.x + obj.Width/2) && ( this.x  < obj.x + obj.Width/2) && (this.y < obj.y + obj.Height)) {
 		return true;
 	}
