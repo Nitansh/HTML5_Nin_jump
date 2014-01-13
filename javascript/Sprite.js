@@ -16,7 +16,7 @@ function Sprite(positionX, positionY, imageUrl, isVisible, frameCount, rowcount,
 					this.isVisible         = isVisible;
 					this.Height            = 0;
 					this.Width             = 0;
-					this.resolution        = 1;
+					this.resolution        = 2;
 					this.frameCount		   = frameCount;
 					this.rowcount		   = rowcount;
 					this.currentRowCount   = 0;
