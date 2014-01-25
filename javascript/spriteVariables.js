@@ -60,7 +60,9 @@ function SpriteVariables() {
 	this.rocket       =  new Rocket((360 - 32)/2, -100, "/game/rocket.png", false, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY});
 	this.sheild       =  new Sheild((360 - 30 - 27), -120, "/game/sheild_icon.png", false, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY});
 	this.rocketHero   =  new RocketHero((360 - 32)/2, this.hero.y - 45 , "/game/hero_R.png",false, 2, 0, true,  {x : 5, y : 0});
-	this.heroSheild   =  new HeroSheild(this.hero.x  - 100 , this.hero.y - 100, "/game/sheild.png", false, 1, 0, false); 		
+	this.heroSheild   =  new HeroSheild(this.hero.x  - 100 , this.hero.y - 100, "/game/sheild.png", false, 1, 0, false); 
+	// it is not sprite but will have the update function so can be called by the generic framework
+	this.scoreBoard   = new ScoreBoard();		
 };
 
 SpriteVariables.prototype.SetPosition = function(){

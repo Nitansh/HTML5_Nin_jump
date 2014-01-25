@@ -242,7 +242,7 @@ Hero.prototype.rocketEndAnimation = function(){
 }
 
 Hero.prototype.updateCoinCount= function(){
-	this.coinNumber++;
+	radio('UpdateCoinCount').broadcast();
 }
 
 Hero.prototype.collidesWith = function(obj){

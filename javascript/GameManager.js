@@ -5,7 +5,6 @@ function GameManager(spriteVariables){
 	this.state               = 'menu';
 	this.requestID           = null;
 	this.isOn                = false;
-	this.progressbar         = document.getElementById('AutoPilotBar');
 }
 
 
@@ -31,7 +30,6 @@ GameManager.prototype.paint = function() {
 GameManager.prototype.update = function(){
 	if (!this.state.localeCompare('play') || !this.state.localeCompare('resumed')){
 		speedVariables.numberOfFrame++;
-		this.updateProgressBar();
 		for (var spriteObject in this.spriteVariables){
 			if (this.spriteVariables[spriteObject].length){
 					for (var ctr_type = 0; ctr_type < this.spriteVariables[spriteObject].length; ctr_type++){
@@ -53,7 +51,8 @@ GameManager.prototype.update = function(){
 		    radio('GameManagerStateUpdate').broadcast('menu');
 			radio('HeroDied').broadcast();
 			radio('TogglePauseButton').broadcast();
-			this.progressbar.value = 0;
+			radio('UpdateScoreOnGameEnd').broadcast();
+			// set the progress bar, score and High score , coin update goes here ********************************************************//
 		}else{
 			this.paint();														//Calling the paint function on regular interval with update
 			this.objectController();											//Calling the objectController function on regular interval with update
@@ -96,14 +95,6 @@ GameManager.prototype.stateChanger =  function(state){
 GameManager.prototype.pauseVisiblityToggle =  function(){
 	spriteVariables.backButton.isVisible = !spriteVariables.backButton.isVisible;
 }
-
-GameManager.prototype.updateProgressBar = function(){
-	if (speedVariables.numberOfFrame % 100 == 0 && (this.progressbar.max >= this.progressbar.value)){
-		this.progressbar.value++;
-	}
-
-}
-
 
 /************
 Manages the object in the game genration etc

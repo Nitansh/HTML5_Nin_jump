@@ -29,8 +29,10 @@ window.onload = function(){
 	radio('TogglePauseButton').subscribe([gameManager.pauseVisiblityToggle,gameManager]);
 	radio('HeroRocketPower').subscribe([spriteVariables.rocketHero.visiblityToggle, spriteVariables.rocketHero]);
 	radio('HeroShieldOn').subscribe([spriteVariables.heroSheild.visiblityToggle, spriteVariables.heroSheild]);
+	radio('UpdateScoreOnGameEnd').subscribe([spriteVariables.scoreBoard.updateScoreOnGameEnd, spriteVariables.scoreBoard],[spriteVariables.scoreBoard.toggleClass, spriteVariables.scoreBoard]);
+	radio('UpdateCoinCount').subscribe([spriteVariables.scoreBoard.updateMyCoinCount, spriteVariables.scoreBoard]);
+	radio('ToggleScoreBoardClass').subscribe([spriteVariables.scoreBoard.toggleClass, spriteVariables.scoreBoard]);
 	menuManager.paint();
-
 	window.addEventListener("click", getInput, false);
 };
 
@@ -67,6 +69,7 @@ function getInput(event){
 			}
 	  		if(menuVariables.playButton.isVisible && menuVariables.playButton.Clicked(event)){			
 				state = 'play';
+				radio('ToggleScoreBoardClass').broadcast();
 			}
 			if(menuVariables.resumeButton.isVisible && menuVariables.resumeButton.Clicked(event)){
 				state = 'resumed';
