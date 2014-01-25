@@ -6,12 +6,58 @@
 		<title>
 			Vini Jump
 		</title>
+		<style>
+			.scoreboard{
+				opacity: 0.65;
+				background: black;
+				color: #CFB53B;
+				width: 328px;
+				height: 50px;
+				padding-left: 20px;
+				z-index: 1;
+				margin-top:580px; 
+				vertical-align: bottom;
+			}
+
+			progress {
+				border: 0;
+				height: 5px;
+				width: 300px;
+				border-radius: 9px;
+			}
+
+			ul {
+				list-style: none;
+			}
+
+			li {
+				list-style: none;
+				float: left;
+				padding-left: 10px;
+				padding-top:  10px;
+			}
+		</style>
 	</head>
 	
 	<body  id = "body" style = "overflow:hidden">
-		<Canvas id = "gameCanvas" style="position:absolute; left:0px; top:0px" > 
+		<Canvas id = "gameCanvas" style="z-index: -1; position:absolute; left:0px; top:0px" > 
 			Your browser does not support the HTML5 canvas tag.
 		</Canvas>
+		<ul class = 'scoreboard'>
+			<li class = "score">
+				Score: <span id="myScore">0</span>
+			</li>	
+			<li class = "coinCount">
+				Coin Count: <span id="myCoins">0</span>
+			</li>
+			<li class= "highscore">
+				High score: <span id="myHighScore">0</span>
+			</li>
+			<li = "Multiplier">
+				X: <span id ="myMultiplier">1</span>
+			</li>
+			<progress id = "AutoPilotBar" value="0" max="100" ></progress>
+		</div>
 		<script type = "text/javascript" src ="../javascript/pubsubz.js"></script>
 		<script type = "text/javascript" src = "../javascript/speedVariables.js"></script>
 		<script type = "text/javascript" src = "../javascript/Sprite.js"></script>

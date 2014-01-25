@@ -79,6 +79,11 @@ SpriteVariables.prototype.SetPosition = function(){
 		this.movable[2][ctr].y = -100;
 		this.movable[2][ctr].isVisible = false;
 	}
+
+	this.leftRamp2.y = 0;
+	this.leftRamp1.y = -640;
+	this.rightRamp2.y = 0;
+	this.rightRamp1.y = -640;
 }
 
 var spriteVariables = new SpriteVariables();
