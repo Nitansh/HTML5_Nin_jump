@@ -40,49 +40,48 @@ function getInput(event){
 
 		event.preventDefault();
 		var state = null;
-		if (menuManager.state.localeCompare('play') || menuManager.state.localeCompare('resumed'))
-			spriteVariables.hero.onInput(event);
+		if (0 == menuManager.state.localeCompare('play') || 0 == menuManager.state.localeCompare('resumed')){
+				spriteVariables.hero.onInput(event);
 
-			if(spriteVariables.backButton.isVisible && !spriteVariables.hero.heroFalling && spriteVariables.backButton.Clicked(event))
-			{	
-				state = 'pause';
-				radio('MenuManagerStateUpdate').broadcast(state);
-				radio('GameManagerStateUpdate').broadcast(state);			
-			}
+				if(spriteVariables.backButton.isVisible && !spriteVariables.hero.heroFalling && spriteVariables.backButton.Clicked(event))
+				{	
+					state = 'pause';
+					radio('MenuManagerStateUpdate').broadcast(state);
+					radio('GameManagerStateUpdate').broadcast(state);			
+				}
+			}else {
+				if(menuVariables.main_menu.isVisible && menuVariables.main_menu.Clicked(event)){
+					state = 'menu';
+					// Make the Hero fall so we can reuse the previous code and logic
+					radio('HeroDieing').broadcast();
+					speedVariables.heroDied =  true;
+					radio('HeroDied').broadcast();
+				}
+				if(menuVariables.backButton.isVisible && menuVariables.backButton.Clicked(event)){
+					state = 'menu';
+				}
+				if(menuVariables.helpButton.isVisible && menuVariables.helpButton.Clicked(event)){
+					state = 'help';
+				}		
+				if(menuVariables.aboutButton.isVisible && menuVariables.aboutButton.Clicked(event)){
+					state = 'about';
+				}
+		  		if(menuVariables.playButton.isVisible && menuVariables.playButton.Clicked(event)){			
+					state = 'play';
+					radio('ToggleScoreBoardClass').broadcast();
+				}
+				if(menuVariables.resumeButton.isVisible && menuVariables.resumeButton.Clicked(event)){
+					state = 'resumed';
+				}
+				if(menuVariables.soundButton.isVisible && menuVariables.soundButton.Clicked(event)){
+					soundOn = !soundOn;	
+					state = 'menu';
+				}
 
-		else {
-			if(menuVariables.main_menu.isVisible && menuVariables.main_menu.Clicked(event)){
-				state = 'menu';
-				// Make the Hero fall so we can reuse the previous code and logic
-				radio('HeroDieing').broadcast();
-				speedVariables.heroDied =  true;
-				radio('HeroDied').broadcast();
-			}
-			if(menuVariables.backButton.isVisible && menuVariables.backButton.Clicked(event)){
-				state = 'menu';
-			}
-			if(menuVariables.helpButton.isVisible && menuVariables.helpButton.Clicked(event)){
-				state = 'help';
-			}		
-			if(menuVariables.aboutButton.isVisible && menuVariables.aboutButton.Clicked(event)){
-				state = 'about';
-			}
-	  		if(menuVariables.playButton.isVisible && menuVariables.playButton.Clicked(event)){			
-				state = 'play';
-				radio('ToggleScoreBoardClass').broadcast();
-			}
-			if(menuVariables.resumeButton.isVisible && menuVariables.resumeButton.Clicked(event)){
-				state = 'resumed';
-			}
-			if(menuVariables.soundButton.isVisible && menuVariables.soundButton.Clicked(event)){
-				soundOn = !soundOn;	
-				state = 'menu';
-			}
-
-			if (null !=  state){ 
-				radio('MenuManagerStateUpdate').broadcast(state);
-		    	radio('GameManagerStateUpdate').broadcast(state);
-		    }
+				if (null !=  state){ 
+					radio('MenuManagerStateUpdate').broadcast(state);
+			    	radio('GameManagerStateUpdate').broadcast(state);
+			    }
 		}		
 		 
 		event.preventDefault();
