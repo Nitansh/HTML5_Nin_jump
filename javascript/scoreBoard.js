@@ -5,6 +5,17 @@ function ScoreBoard(){
 	this.myHighScore         = document.getElementById('myHighScore');
 	this.myCointCount        = document.getElementById('myCoins');
 	this.myMultiplier        = document.getElementById('myMultiplier');
+	this.mainMeter           = document.getElementById('meter');
+
+	// Meter ScoreBoard thing 
+	this.rocketMeter          = document.getElementById("RocketPowerMeter"); 
+	this.rocketMeterCoins     = document.getElementById("RocketMeterMsg"); 
+	this.shieldMeter          = document.getElementById("shieldPowerMeter"); 
+	this.shieldMeterCoins     = document.getElementById("shieldMeterMsg"); 
+	this.autoPlitotMeter      = document.getElementById("AutoPilotPowerMeter"); 
+	this.autoPlitotMeterCoins = document.getElementById("AutoPilotMeterMsg");
+	this.totalCoins           = document.getElementById("TotalCoins"); 
+
 }
 
 ScoreBoard.prototype.toggleClass = function(){
@@ -76,4 +87,73 @@ ScoreBoard.prototype.updateScoreOnGameEnd = function(){
 	this.SetHtml(this.myCointCount, 0);
 	this.updateHighScore();
 	this.autoPilotBar.value = 0;
+}
+
+ScoreBoard.prototype.applyDormatClass = function(){
+	this.mainMeter.classList.add('dormat');
+}
+
+ScoreBoard.prototype.removeDormatClass = function(){
+	this.mainMeter.classList.remove('dormat');
+	this.updateMetreScoreBoard();
+}
+
+ScoreBoard.prototype.updateMetreScoreBoard = function(){
+	if (typeof (Storage) !== undefined){
+		// updating the coin count in meter scoreBaord
+		if (localStorage.coinCount !== undefined)
+			this.SetHtml(this.totalCoins, localStorage.coinCount);
+		else{
+			localStorage.coinCount = 0;
+			this.SetHtml(this.totalCoins, localStorage.coinCount);
+		}
+		// updating the scoreBoard for Rocket
+
+		if (localStorage.RocketMeter !== undefined)
+			this.rocketMeter.value = parseInt(localStorage.RocketMeter)*10;
+		else{
+			localStorage.RocketMeter = 0;
+			this.rocketMeter.value = parseInt(localStorage.RocketMeter)*10;
+		}
+
+		if (localStorage.RocketMeter == '10'){
+			this.SetHtml(this.rocketMeterCoins, 0);
+		}else{
+			this.SetHtml(this.rocketMeterCoins, ((parseInt(localStorage.RocketMeter)? parseInt(localStorage.RocketMeter): 1/2) * 2) * 100 )
+		}
+
+		if (localStorage.shieldMeter !== undefined)
+			this.shieldMeter.value = parseInt(localStorage.shieldMeter)*10;
+		else{
+			localStorage.shieldMeter = 0;
+			this.shieldMeter.value = parseInt(localStorage.shieldMeter)*10;
+		}
+
+		if (localStorage.shieldMeter == '10'){
+			this.SetHtml(this.shieldMeterCoins, 0);
+		}else{
+			this.SetHtml(this.shieldMeterCoins, ((parseInt(localStorage.shieldMeterCoins)? parseInt(localStorage.shieldMeter): 1/2) * 2) * 100 )
+		}
+
+		if (localStorage.autoPlitotMeter !== undefined)
+			this.autoPlitotMeter.value = parseInt(localStorage.autoPlitotMeter)*10;
+		else{
+			localStorage.autoPlitotMeter = 0;
+			this.autoPlitotMeter.value = parseInt(localStorage.autoPlitotMeter)*10;
+		} 
+
+		if (localStorage.autoPlitotMeter == '10'){
+			this.SetHtml(this.autoPlitotMeterCoins, 0);
+		}else{
+			this.SetHtml(this.autoPlitotMeterCoins, ((parseInt(localStorage.autoPlitotMeter)? parseInt(localStorage.autoPlitotMeter): 1/2) * 2) * 100 )
+		}
+
+	}else{
+		alert('we have to use phonegap technique');
+	}
+}
+
+ScoreBoard.prototype.updateTotalCoinCountAfterPowerUp =  function(key, value){
+	key -= value;
+	this.SetHtml(TotalCoins, value);
 }

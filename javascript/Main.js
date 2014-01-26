@@ -32,6 +32,8 @@ window.onload = function(){
 	radio('UpdateScoreOnGameEnd').subscribe([spriteVariables.scoreBoard.updateScoreOnGameEnd, spriteVariables.scoreBoard],[spriteVariables.scoreBoard.toggleClass, spriteVariables.scoreBoard]);
 	radio('UpdateCoinCount').subscribe([spriteVariables.scoreBoard.updateMyCoinCount, spriteVariables.scoreBoard]);
 	radio('ToggleScoreBoardClass').subscribe([spriteVariables.scoreBoard.toggleClass, spriteVariables.scoreBoard]);
+	radio('ApplyDormatClassToMeters').subscribe([spriteVariables.scoreBoard.applyDormatClass, spriteVariables.scoreBoard]);
+	radio('RemoveDormatClassFromMetere').subscribe([spriteVariables.scoreBoard.removeDormatClass, spriteVariables.scoreBoard]);
 	menuManager.paint();
 	window.addEventListener("click", getInput, false);
 };
@@ -59,12 +61,14 @@ function getInput(event){
 				}
 				if(menuVariables.backButton.isVisible && menuVariables.backButton.Clicked(event)){
 					state = 'menu';
+					radio('ApplyDormatClassToMeters').broadcast();
 				}
 				if(menuVariables.helpButton.isVisible && menuVariables.helpButton.Clicked(event)){
 					state = 'help';
 				}		
 				if(menuVariables.aboutButton.isVisible && menuVariables.aboutButton.Clicked(event)){
 					state = 'about';
+					radio('RemoveDormatClassFromMetere').broadcast();
 				}
 		  		if(menuVariables.playButton.isVisible && menuVariables.playButton.Clicked(event)){			
 					state = 'play';
@@ -85,4 +89,42 @@ function getInput(event){
 		}		
 		 
 		event.preventDefault();
+}
+
+// event for the meter scoreBoard
+
+rocketMeterUpdate = function(){
+	if (parseInt(spriteVariables.scoreBoard.rocketMeterCoins.innerHTML) < parseInt(spriteVariables.scoreBoard.totalCoins.innerHTML)){
+		var value = parseInt(localStorage.RocketMeter);
+		value++;
+		localStorage.RocketMeter = value;
+		spriteVariables.scoreBoard.updateTotalCoinCountAfterPowerUp(localStorage.RocketMeter, value*100);
+		spriteVariables.scoreBoard.updateMetreScoreBoard();
+	}else{
+		alert('You need ' + (parseInt(spriteVariables.scoreBoard.rocketMeterCoins.innerHTML) - parseInt(spriteVariables.scoreBoard.totalCoins.innerHTML)) +  ' coins to update');
+	}
+}
+
+shieldMeterUpdate = function(){
+	if (parseInt(spriteVariables.scoreBoard.shieldMeterCoins.innerHTML) < parseInt(spriteVariables.scoreBoard.totalCoins.innerHTML)){
+		var value = parseInt(localStorage.shieldMeter);
+		value++;
+		localStorage.shieldMeter = value;
+		spriteVariables.scoreBoard.updateTotalCoinCountAfterPowerUp(localStorage.shieldMeter, value*100);
+		spriteVariables.scoreBoard.updateMetreScoreBoard();
+	}else{
+		alert('You need ' + (parseInt(spriteVariables.scoreBoard.shieldMeterCoins.innerHTML) - parseInt(spriteVariables.scoreBoard.totalCoins.innerHTML)) +  ' coins to update');
+	}
+}
+
+autoPlitotMeterUpadate = function(){
+	if (parseInt(spriteVariables.scoreBoard.autoPlitotMeterCoins.innerHTML) < parseInt(spriteVariables.scoreBoard.totalCoins.innerHTML)){
+		var value = parseInt(localStorage.autoPlitotMeter);
+		value++;
+		localStorage.autoPlitotMeter = value;
+		spriteVariables.scoreBoard.updateTotalCoinCountAfterPowerUp(localStorage.autoPlitotMeter, value*100);
+		spriteVariables.scoreBoard.updateMetreScoreBoard();
+	}else{
+		alert('You need ' + (parseInt(spriteVariables.scoreBoard.autoPlitotMeterCoins.innerHTML) - parseInt(spriteVariables.scoreBoard.totalCoins.innerHTML)) +  ' coins to update');
+	}
 }
