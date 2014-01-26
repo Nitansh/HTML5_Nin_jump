@@ -3,10 +3,10 @@ function MenuManager(menuVariables){
 	this.context 			 = Globalcontext;
 	this.state               = 'menu';
 	this.menuVariables       = menuVariables;
-	this.pauseState 		 = [false,true, false, false, false, false, false, false, false, true, true];
-	this.menuState  		 = [true, true, false, true, true, true, true, false, false, false,   false];
-	this.helpState  		 = [true, true, true, false, false, false, false, false, true, false, false];
-	this.aboutState  		 = [true, true, true, false, false, false, false, true, false, false, false];
+	this.pauseState 		 = [false,true, false, false, false, false, false, false, true, true];
+	this.menuState  		 = [true, true, false, true, true, true, true, false, false,   false];
+	this.helpState  		 = [true, true, true, false, false, false, false, true, false, false];
+	this.aboutState  		 = [true, true, true, false, false, false, false, false, false, false];
 }
 
 

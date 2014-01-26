@@ -51,6 +51,8 @@ GameManager.prototype.update = function(){
 		    radio('GameManagerStateUpdate').broadcast('menu');
 			radio('HeroDied').broadcast();
 			radio('TogglePauseButton').broadcast();
+			radio('UpdateScoreOnGameEnd').broadcast();
+			// set the progress bar, score and High score , coin update goes here ********************************************************//
 		}else{
 			this.paint();														//Calling the paint function on regular interval with update
 			this.objectController();											//Calling the objectController function on regular interval with update
@@ -94,7 +96,6 @@ GameManager.prototype.pauseVisiblityToggle =  function(){
 	spriteVariables.backButton.isVisible = !spriteVariables.backButton.isVisible;
 }
 
-
 /************
 Manages the object in the game genration etc
 *************/
@@ -107,9 +108,10 @@ GameManager.prototype.objectController = function(){
 		var rand2 = Math.floor(Math.random() * (speedVariables.halloweenProb + 1));
 		var rand3 = Math.floor(Math.random() * (speedVariables.coinProb+ 1));
 		var rand4 = Math.floor(Math.random() * (speedVariables.void_obj+ 1));
+		var rand5 = Math.floor(Math.random() * (speedVariables.powerProb+ 1))
 
 
-		random = rand1 + rand2 + rand3 + rand4 ;
+		random = rand1 + rand2 + rand3 + rand4 + rand5;
 
 		random = random + speedVariables.startRandomIndex;
 		
@@ -149,9 +151,11 @@ GameManager.prototype.objectController = function(){
 			
 			// Do nothing :D :D since the game part need to be empty somewhere in between
 
-		}else if ( (speedVariables.startRandomIndex + speedVariables.monkeyProb + speedVariables.halloweenProb + speedVariables.coinProb  + speedVariables.void_obj) < random && random <= (speedVariables.startRandomIndex + speedVariables.monkeyProb + speedVariables.halloweenProb + speedVariables.coinProb + speedVariables.void_obj + speedVariables.power)){			
-			
-			// Do nothing :D :D since the game part need to be empty somewhere in between
+		}else if (!(spriteVariables.rocketHero.isVisible || spriteVariables.heroSheild.isVisible) && (speedVariables.startRandomIndex + speedVariables.monkeyProb + speedVariables.halloweenProb + speedVariables.coinProb  + speedVariables.void_obj) < random && random <= (speedVariables.startRandomIndex + speedVariables.monkeyProb + speedVariables.halloweenProb + speedVariables.coinProb + speedVariables.void_obj + speedVariables.powerProb)){			
+			if (Math.random() * 10 < 5)
+				spriteVariables.rocket.isVisible = true;
+			else
+				spriteVariables.sheild.isVisible = true;
 
 		}
  	}	

@@ -6,12 +6,91 @@
 		<title>
 			Vini Jump
 		</title>
+		<style>
+			.dormat {
+				display: none;
+			}
+
+			.scoreboard{
+				opacity: 0.65;
+				background: black;
+				color: #CFB53B;
+				width: 328px;
+				height: 50px;
+				padding-left: 20px;
+				z-index: 1;
+				margin-top:580px; 
+				vertical-align: bottom;
+			}
+			.meter {
+				width: 328px;
+				color: #CFB53B;
+				height: 50px;
+				z-index: 1;
+				margin-top:200px; 
+			}
+
+			progress {
+				border: 0;
+				height: 5px;
+				width: 300px;
+				border-radius: 9px;
+			}
+
+			ul {
+				list-style: none;
+			}
+
+			li {
+				list-style: none;
+				float: left;
+				padding-left: 10px;
+				padding-top:  10px;
+			}
+		</style>
 	</head>
 	
 	<body  id = "body" style = "overflow:hidden">
-		<Canvas id = "gameCanvas" style="position:absolute; left:0px; top:0px" > 
+		<Canvas id = "gameCanvas" style="z-index: -1; position:absolute; left:0px; top:0px" > 
 			Your browser does not support the HTML5 canvas tag.
 		</Canvas>
+		<ul class = 'scoreboard dormat' id = 'scoreboard'>
+			<li class = "score">
+				Score: <span id="myScore">0</span>
+			</li>	
+			<li class = "coinCount">
+				Coins: <span id="myCoins">0</span>
+			</li>
+			<li class= "highscore">
+				High score: <span id="myHighScore">0</span>
+			</li>
+			<li = "Multiplier">
+				X: <span id ="myMultiplier">1</span>
+			</li>
+			<progress id = "AutoPilotBar" value="0" max="100" ></progress>
+		</ul>	
+		<div class="meter dormat" id="meter">
+			<ul>
+				<li>
+					Total Coins <span id = "TotalCoins"></span>
+				</li>
+				<li onclick="rocketMeterUpdate()">
+				Rocket
+					<progress id = "RocketPowerMeter" value="0" max="100" ></progress>
+					Need <span id = "RocketMeterMsg">100</span> coins to update
+				</li>
+				<li onclick="shieldMeterUpdate()">
+				Shield
+					<progress id = "shieldPowerMeter" value="0" max="100" ></progress>
+					Need <span id = "shieldMeterMsg">100</span> coins to update
+				</li>
+				<li onclick="autoPlitotMeterUpadate()">
+				Auto Pilot
+					<progress id = "AutoPilotPowerMeter" value="0" max="100" ></progress>
+					Need <span id = "AutoPilotMeterMsg">100</span> coins to update
+				</li>
+			</ul>
+		</div>
 		<script type = "text/javascript" src ="../javascript/pubsubz.js"></script>
 		<script type = "text/javascript" src = "../javascript/speedVariables.js"></script>
 		<script type = "text/javascript" src = "../javascript/Sprite.js"></script>
@@ -20,11 +99,16 @@
 		<script type = "text/javascript" src = "../javascript/Coin.js"></script>
 		<script type = "text/javascript" src = "../javascript/Monkey.js"></script>
 		<script type = "text/javascript" src = "../javascript/Halloween.js"></script>
+		<script type = "text/javascript" src = "../javascript/Rocket.js"></script>
+		<script type = "text/javascript" src = "../javascript/Sheild.js"></script>
+		<script type = "text/javascript" src = "../javascript/HeroSheild.js"></script>
+		<script type = "text/javascript" src = "../javascript/RocketHero.js"></script>
 		<script type = "text/javascript" src = "../javascript/ParticleSystem.js"></script>
 		<script type = "text/javascript" src = "../javascript/menuVariables.js"></script>
 		<script type = "text/javascript" src = "../javascript/HeroParticleSystem.js"></script>
 		<script type = "text/javascript" src = "../javascript/SnowParticleSystem.js"></script>
 		<script type = "text/javascript" src = "../javascript/CrackerParticleSystem.js"></script>
+		<script type = "text/javascript" src = "../javascript/scoreBoard.js"></script>
 		<script type = "text/javascript" src = "../javascript/spriteVariables.js"></script>
 		<script type = "text/javascript" src = "../javascript/GameManager.js"></script>
 		<script type = "text/javascript" src = "../javascript/MenuManager.js"></script>
