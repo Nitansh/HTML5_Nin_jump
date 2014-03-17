@@ -23,7 +23,7 @@ function Hero(positionX, positionY, imageUrl, isVisible, frameCount, rowCount, i
 		localStorage.shieldMeter = 1;
 	this.sheildPowerCtr =  speedVariables.sheildPowerCtr * localStorage.shieldMeter;
 	this.shieldPower = false;
-	this.autoPilot   = false;
+	this.autoPilot   = true;
 	this.Animation(0);
 
 }
@@ -168,10 +168,15 @@ Hero.prototype.collisionLogic = function(){
 		if (spriteVariables[spriteObject].length){
 			for (var ctr_type = 0; ctr_type < spriteVariables[spriteObject].length; ctr_type++){	
 				for (var ctr_no = 0; ctr_no < spriteVariables[spriteObject][ctr_type].length; ctr_no++){
+					// Advance Collision detection
+					if (this.autoPilot && spriteVariables[spriteObject][ctr_type][ctr_no].isObstacle){
+						this.AI(spriteVariables[spriteObject][ctr_type][ctr_no]);
+					}
 					//update function
 					if(this.collidesWith(spriteVariables[spriteObject][ctr_type][ctr_no])){
 						if(spriteVariables[spriteObject][ctr_type][ctr_no].isObstacle){
 							this.updateObject(spriteVariables[spriteObject][ctr_type][ctr_no] ,true);
+							
 						}else{
 							this.updateObject(spriteVariables[spriteObject][ctr_type][ctr_no] ,false);
 						}
@@ -253,6 +258,22 @@ Hero.prototype.rocketEndAnimation = function(){
 Hero.prototype.updateCoinCount= function(){
 	radio('UpdateCoinCount').broadcast();
 }
+
+
+Hero.prototype.AI = function(obj){
+	if(this.AdvanceCollision(obj)){
+		this.onInput(obj);
+	}
+}
+
+
+Hero.prototype.AdvanceCollision = function(obj){
+	if ((this.x + this.Width > obj.x + obj.Width/2) && ( this.x  < obj.x + obj.Width/2) && (this.y - 100 < obj.y + obj.Height)){
+		return true;
+	}else
+		return false;	 
+}
+
 
 Hero.prototype.collidesWith = function(obj){
 	
