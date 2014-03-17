@@ -132,7 +132,7 @@ ScoreBoard.prototype.updateMetreScoreBoard = function(){
 		if (localStorage.shieldMeter == '10'){
 			this.SetHtml(this.shieldMeterCoins, 0);
 		}else{
-			this.SetHtml(this.shieldMeterCoins, ((parseInt(localStorage.shieldMeterCoins)? parseInt(localStorage.shieldMeter): 1/2) * 2) * 100 )
+			this.SetHtml(this.shieldMeterCoins, ((parseInt(localStorage.shieldMeter)? parseInt(localStorage.shieldMeter): 1/2) * 2) * 100 )
 		}
 
 		if (localStorage.autoPlitotMeter !== undefined)
@@ -155,5 +155,5 @@ ScoreBoard.prototype.updateMetreScoreBoard = function(){
 
 ScoreBoard.prototype.updateTotalCoinCountAfterPowerUp =  function(key, value){
 	key -= value;
-	this.SetHtml(TotalCoins, value);
+	localStorage.coinCount -= value; 
 }
