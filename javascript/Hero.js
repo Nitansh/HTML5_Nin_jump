@@ -15,8 +15,13 @@ function Hero(positionX, positionY, imageUrl, isVisible, frameCount, rowCount, i
 	this.coinNumber = 0;
 	this.heroFalling = false;
 	this.rocketPower = false;
-	this.rocketPowerCtr =  speedVariables.rocketPowerCtr;
-	this.sheildPowerCtr =  speedVariables.sheildPowerCtr;
+	if (!localStorage.RocketMeter || localStorage.RocketMeter == 0 ) 
+		localStorage.RocketMeter = 1;
+	this.rocketPowerCtr =  speedVariables.rocketPowerCtr * (localStorage.RocketMeter);
+	
+	if (!localStorage.shieldMeter || localStorage.shieldMeter == 0 )  
+		localStorage.shieldMeter = 1;
+	this.sheildPowerCtr =  speedVariables.sheildPowerCtr * localStorage.shieldMeter;
 	this.shieldPower = false;
 	this.autoPilot   = false;
 	this.Animation(0);
@@ -31,7 +36,9 @@ Hero.prototype.update = function(){
 	
 	if (this.rocketPower && --this.rocketPowerCtr <= 0){
 		this.rocketPower = !this.rocketPower;
-		this.rocketPowerCtr = speedVariables.rocketPowerCtr;
+		if (!localStorage.RocketMeter || localStorage.RocketMeter == 0 ) 
+			localStorage.RocketMeter = 1;
+		this.rocketPowerCtr = speedVariables.rocketPowerCtr * localStorage.RocketMeter;
 		this.isVisible = true;
 		this.rocketEndAnimation();
 		radio('HeroRocketPower').broadcast();
@@ -39,7 +46,9 @@ Hero.prototype.update = function(){
 
 	if (this.shieldPower && --this.sheildPowerCtr <= 0 ){
 		this.shieldPower = !this.shieldPower;
-		this.sheildPowerCtr = speedVariables.sheildPowerCtr;
+		if (!localStorage.shieldMeter || localStorage.shieldMeter == 0 )  
+			localStorage.shieldMeter = 1;
+		this.sheildPowerCtr = speedVariables.sheildPowerCtr * localStorage.shieldMeter;
 		radio('HeroShieldOn').broadcast();
 	}
 
