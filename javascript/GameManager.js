@@ -132,19 +132,20 @@ GameManager.prototype.objectController = function(){
 			}
 
 		}else if ( (speedVariables.startRandomIndex + speedVariables.monkeyProb + speedVariables.halloweenProb) < random && random <= (speedVariables.startRandomIndex + speedVariables.monkeyProb + speedVariables.halloweenProb + speedVariables.coinProb) || speedVariables.coinInProgess){			
-			
+			// object Frequecy changed when the coin appears on the screen fix the bug
 			if (!speedVariables.coinInProgess){
 				random1 = Math.floor(Math.random() *  2);
 				random1 =  random1 + 1;
 				speedVariables.coinCount     = 5 * random1;
 				speedVariables.coinInProgess = true;
+				var temp = spriteVariables.objectFrequency;
 				speedVariables.objectFrequency = 8;
 				}
 			
 			if (speedVariables.coinIndex >= speedVariables.coinCount){
      			speedVariables.coinInProgess = false;
 				speedVariables.coinIndex = 0;
-				speedVariables.objectFrequency = 50;
+				speedVariables.objectFrequency = 35;
 			}	
 
 			this.spriteVariables.movable[2][(8  * (random1-1))  + speedVariables.coinIndex]['isVisible'] = true;

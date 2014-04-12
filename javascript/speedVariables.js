@@ -1,12 +1,12 @@
 function SpeedVariables() {
 	this.numberOfFrame   = 0;
-	this.speedController = 5;
-	this.objectFrequency = 50;
+	this.speedController = 3;
+	this.objectFrequency = 35;
 	this.startRandomIndex= 100;
-	this.monkeyProb      = 5;
-	this.halloweenProb   = 5;
-	this.coinProb        = 5;
-	this.void_obj        = 5;
+	this.monkeyProb      = 50;
+	this.halloweenProb   = 50;
+	this.coinProb        = 20;
+	this.void_obj        = 10;
 	this.powerProb       = 5;
 	this.coinCount       = 5;
 	this.coinInProgess   = false;

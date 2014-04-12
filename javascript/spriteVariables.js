@@ -53,10 +53,10 @@ function SpriteVariables() {
 	this.rightRamp1   =  new Ramp((commonConfiguration.ClientWidth - commonConfiguration.rampWidth), -commonConfiguration.ClientHeight , "/game/ramp_r.png", true, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY});
 	this.rightRamp2   =  new Ramp((commonConfiguration.ClientWidth - commonConfiguration.rampWidth), 0, "/game/ramp_r.png", true, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY});
 	this.hero         =  new Hero((commonConfiguration.ClientWidth - commonConfiguration.rampWidth - this.Height), 500, "/game/bhero.png", true, 32, 0, true , {x : 8 ,y : 0});
-	this.backButton   =  new Sprite(commonConfiguration.ClientWidth - this.Width, commonConfiguration.ClientHeight - this.Height, "/game/pause.png", true, 1, 0, false);
+	this.backButton   =  new Sprite(commonConfiguration.ClientWidth - 20, commonConfiguration.ClientHeight - 20, "/game/pause.png", true, 1, 0, false);
 	this.movable      =  movable.objects;
 	this.p1           =  new HeroParticleSystem({x:commonConfiguration.ClientWidth-commonConfiguration.rampWidth, y:500 + 40}, 50, {red:227, green:140, blue:45});
-	this.p3           =  new SnowParticleSystem({x:commonConfiguration.ClientWidth, y:commonConfiguration.ClientHeight}, 50, {red:248, green:248, blue:255});
+	this.p3           =  new SnowParticleSystem({x:commonConfiguration.ClientWidth, y:commonConfiguration.ClientHeight}, 50, {red:227, green:140, blue:45});
 	this.rocket       =  new Rocket((commonConfiguration.ClientWidth - this.Width)/2, commonConfiguration.YUpperLimit, "/game/rocket.png", false, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY});
 	this.sheild       =  new Sheild((commonConfiguration.ClientWidth - commonConfiguration.rampWidth - this.Width), commonConfiguration.YUpperLimit - this.Height, "/game/sheild_icon.png", false, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY});
 	this.rocketHero   =  new RocketHero((commonConfiguration.ClientWidth - this.Width)/2, this.hero.y - this.Height , "/game/hero_R.png",false, 2, 0, true,  {x : 5, y : 0});
