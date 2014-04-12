@@ -14,7 +14,8 @@ function Sprite(positionX, positionY, imageUrl, isVisible, frameCount, rowcount,
 					this.isVisible         = isVisible;
 					this.Height            = 0;
 					this.Width             = 0;
-					this.resolution        = 1;
+					this.resolutionX      = 1.2;
+					this.resolutionY      = 1.2;
 					this.frameCount		   = frameCount;
 					this.rowcount		   = rowcount;
 					this.currentRowCount   = 0;
@@ -59,10 +60,10 @@ function Sprite(positionX, positionY, imageUrl, isVisible, frameCount, rowcount,
 
 					if (this.isVisible && this.imageLoad && canvasContext){
 						if (!this.isAnimated){
-							canvasContext.drawImage(this.imageElement, this.x, this.y, (this.resolution * this.Width), (this.resolution * this.Height));
+							canvasContext.drawImage(this.imageElement, this.x, this.y, (this.resolutionX * this.Width), (this.resolutionY * this.Height));
 						}
 						else {
-								canvasContext.drawImage(this.imageElement, (this.startAnimIndex + this.currentFrame) * this.Width , (this.currentRowCount * this.Height), this.Width, this.Height, this.x, this.y, (this.resolution * this.Width), (this.resolution * this.Height));
+								canvasContext.drawImage(this.imageElement, (this.startAnimIndex + this.currentFrame) * this.Width , (this.currentRowCount * this.Height), this.Width, this.Height, this.x, this.y, (this.resolutionX * this.Width), (this.resolutionY * this.Height));
 								if (0 == (speedVariables.numberOfFrame) % speedVariables.speedController){	
 									this.currentFrame = (++this.currentFrame) % this.frameThreshold;
 							    }
