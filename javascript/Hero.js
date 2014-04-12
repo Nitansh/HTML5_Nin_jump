@@ -170,11 +170,11 @@ Hero.prototype.collisionLogic = function(){
 			for (var ctr_type = 0; ctr_type < spriteVariables[spriteObject].length; ctr_type++){	
 				for (var ctr_no = 0; ctr_no < spriteVariables[spriteObject][ctr_type].length; ctr_no++){
 					// Advance Collision detection
-					if (this.autoPilot && spriteVariables[spriteObject][ctr_type][ctr_no].isObstacle){
+					if (spriteVariables[spriteObject][ctr_type][ctr_no].isObstacle.isVisible && this.autoPilot && spriteVariables[spriteObject][ctr_type][ctr_no].isObstacle){
 						this.AI(spriteVariables[spriteObject][ctr_type][ctr_no]);
 					}
 					//update function
-					if(this.collidesWith(spriteVariables[spriteObject][ctr_type][ctr_no])){
+					if(spriteVariables[spriteObject][ctr_type][ctr_no].isVisible &&  this.collidesWith(spriteVariables[spriteObject][ctr_type][ctr_no])){
 						if(spriteVariables[spriteObject][ctr_type][ctr_no].isObstacle){
 							this.updateObject(spriteVariables[spriteObject][ctr_type][ctr_no] ,true);
 							
@@ -187,7 +187,7 @@ Hero.prototype.collisionLogic = function(){
 			}
 		}
 		else{
-			if(spriteVariables[spriteObject].isPower && this.collidesWith(spriteVariables[spriteObject])){
+			if(spriteVariables[spriteObject].isVisible && spriteVariables[spriteObject].isPower && this.collidesWith(spriteVariables[spriteObject])){
 				this.powerObject(spriteVariables[spriteObject]);
 			} 
 		}	
