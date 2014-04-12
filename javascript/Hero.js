@@ -121,8 +121,9 @@ Hero.prototype.Animation = function(Anim){
 
 Hero.prototype.leftToRightAnimation = function(){
 
-	if (this.x + 40 <= (360 - 30)){
-		if (this.x < 360 / 2){
+	// This.x + hero.width <= client.width - rampwidth 
+	if (this.x + this.Width <= (commonConfiguration.ClientWidth - commonConfiguration.rampWidth)){
+		if (this.x < commonConfiguration.ClientWidth / 2){
 			this.Animation(2);
 		}else {
 			this.Animation(3);
@@ -132,20 +133,20 @@ Hero.prototype.leftToRightAnimation = function(){
 		this.x  = this.x +  this.speedX;
 	}
 
-	if (this.x + 40 > (360 - 30)){
+	if (this.x + this.Width > (commonConfiguration.ClientWidth - commonConfiguration.rampWidth)){
 		this.inAir   =  false;
 		this.isRight = true;
 		this.isLeft  = false;
 		this.Animation(0);
-		this.x = (360 - 30 - 40 );
+		this.x = (commonConfiguration.ClientWidth - commonConfiguration.rampWidth - this.Width );
 	}
 
 }
 
 Hero.prototype.rightToLeftAnimation = function(){
 
-	if (this.x  >= 30){
-		if (this.x < 360 / 2){
+	if (this.x  >= commonConfiguration.rampWidth){
+		if (this.x < commonConfiguration.ClientWidth / 2){
 			this.Animation(2);
 		}else {
 			this.Animation(3);
@@ -153,12 +154,12 @@ Hero.prototype.rightToLeftAnimation = function(){
 		this.x  = this.x - this.speedX;
 	}
 
-	if (this.x  < 30){
+	if (this.x  < commonConfiguration.rampWidth){
 		this.inAir  =  false;
 		this.isLeft =  true;
 		this.isRight=  false; 
 		this.Animation(1);
-		this.x  = 30;
+		this.x  = commonConfiguration.rampWidth;
 	}
 
 }
@@ -204,13 +205,13 @@ Hero.prototype.updateObject = function(obj, visiblility){
 	}
 	
 	obj.isVisible = false;
-	obj.y = -100;
+	obj.y = commonConfiguration.YUpperLimit;
 }
 
 Hero.prototype.powerObject = function(power){
 
 	power.isVisible = false;
-	power.y =  -100;
+	power.y =  commonConfiguration.YUpperLimit;
 
 	if (power instanceof Rocket){
 		this.rocketPower = true;
@@ -228,7 +229,7 @@ Hero.prototype.powerObject = function(power){
 Hero.prototype.heroTata = function(){
 
 	this.speedY = 1;
-	if (this.y < 640){
+	if (this.y < commonConfiguration.ClientHeight){
 		this.y += this.speedY;
 	}else{
 		speedVariables.heroDied =  true;
@@ -245,7 +246,7 @@ Hero.prototype.heroTata = function(){
 
 Hero.prototype.rocketEndAnimation = function(){
 	this.inAir = true;
-	if (this.x < 360/2){
+	if (this.x < commonConfiguration.ClientWidth/2){
 		this.isRight = true;
 		this.isLeft = false;	
 	}else{
@@ -279,7 +280,7 @@ Hero.prototype.collidesWith = function(obj){
 	
 	if (this.shieldPower && obj.isObstacle){
 		if ( (this.x + this.Width > obj.x + obj.Width/2) && ( this.x  < obj.x + obj.Width/2) && (this.y < obj.y + obj.Height)) {
-			obj.y = -100;
+			obj.y = commonConfiguration.YUpperLimit;
 			obj.isVisible = false;
 			this.sheildPowerCtr = -2;
 		}

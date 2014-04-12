@@ -1,3 +1,10 @@
+/*****************************************
+
+This file handles the nature of the coin in the game 
+
+we have to only instantiate the coin in our sprite variables and override the update function 
+
+*******************************************/
 function Coin(positionX, positionY, imageUrl, isVisible, frameCount, rowCount, isAnimated, speed){
 	this.base 	= Sprite;
 	this.base(positionX, positionY, imageUrl, isVisible,  frameCount, rowCount, isAnimated);

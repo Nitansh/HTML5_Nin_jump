@@ -1,3 +1,6 @@
+/***************************
+Manages the game system 
+*****************************/
 function GameManager(spriteVariables){
 	this.canvas              = Globalcanvas;
 	this.context 			 = Globalcontext;

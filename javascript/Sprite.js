@@ -9,8 +9,6 @@
 
 function Sprite(positionX, positionY, imageUrl, isVisible, frameCount, rowcount, isAnimated){
 				
-					this.x                 = positionX;
-					this.y                 = positionY; 
 					this.imageSrc          = "../res" + imageUrl;
 					this.isHit             = false;
 					this.isVisible         = isVisible;
@@ -33,6 +31,10 @@ function Sprite(positionX, positionY, imageUrl, isVisible, frameCount, rowcount,
 						this.startAnimIndex	   = 0;
 					}
 					this.init(this.imageSrc);
+
+					this.x                 = positionX;
+					this.y                 = positionY; 
+					
 				}
 
 				Sprite.prototype.init = function(imageUrl){

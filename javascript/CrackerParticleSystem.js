@@ -1,3 +1,15 @@
+/*************************************
+This File handles the Cracker particle system in the game.
+
+we just have to instatiate the cracker object in our Sprite variables
+
+
+**************************************/
+
+/****************
+Performance Issues need to resolve
+*****************/
+
 fireworks = [];
 particles = [];
 		

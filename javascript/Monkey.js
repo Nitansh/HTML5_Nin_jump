@@ -16,8 +16,8 @@ Monkey.prototype = Object.create(Sprite.prototype);
 Monkey.prototype.update = function(){
 
 	if (this.isVisible){
-		this.y = ((this.y < (640 - this.speedY)) ? (this.y + this.speedY) : (-100));
-		if ((-100) == this.y){
+		this.y = ((this.y < (commonConfiguration.ClientHeight - this.speedY)) ? (this.y + this.speedY) : (commonConfiguration.YUpperLimit));
+		if ((commonConfiguration.YUpperLimit) == this.y){
 			this.isVisible = false;
 		}
 	}

@@ -20,7 +20,7 @@ HeroParticleSystem.prototype.update = function(){
 
 	for (var counter = 0; counter < this.count; counter++){
 		var particle = this.ParticleSystemObject[counter];
-		if (particle.y > 640 ){
+		if (particle.y > commonConfiguration.ClientHeight ){
 				particle.y = spriteVariables.hero.y + 40;
 				if (spriteVariables.hero.isLeft)
 					particle.x = spriteVariables.hero.x + 10;
