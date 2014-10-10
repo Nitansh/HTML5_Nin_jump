@@ -57,9 +57,9 @@ function SpriteVariables() {
 	this.movable      =  movable.objects;
 	this.p1           =  new HeroParticleSystem({x:commonConfiguration.ClientWidth-commonConfiguration.rampWidth, y:500 + 40}, 50, {red:227, green:140, blue:45});
 	this.p3           =  new SnowParticleSystem({x:commonConfiguration.ClientWidth, y:commonConfiguration.ClientHeight}, 50, {red:227, green:140, blue:45});
-	this.rocket       =  new Rocket((commonConfiguration.ClientWidth - this.Width)/2, commonConfiguration.YUpperLimit, "/game/rocket.png", false, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY});
-	this.sheild       =  new Sheild((commonConfiguration.ClientWidth - commonConfiguration.rampWidth - this.Width), commonConfiguration.YUpperLimit - this.Height, "/game/sheild_icon.png", false, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY});
-	this.rocketHero   =  new RocketHero((commonConfiguration.ClientWidth - this.Width)/2, this.hero.y - this.Height , "/game/hero_R.png",false, 2, 0, true,  {x : 5, y : 0});
+	this.rocket       =  new Rocket((commonConfiguration.ClientWidth - 27)/2, commonConfiguration.YUpperLimit, "/game/rocket.png", false, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY});
+	this.sheild       =  new Sheild((commonConfiguration.ClientWidth - commonConfiguration.rampWidth - 27), commonConfiguration.YUpperLimit - this.Height, "/game/sheild_icon.png", false, 1, 0, false , {x : 0 ,y : speedVariables.globalSpeedY});
+	this.rocketHero   =  new RocketHero((commonConfiguration.ClientWidth - 72)/2, this.hero.y - 15 , "/game/hero_R.png",false, 2, 0, true,  {x : 5, y : 0});
 	this.heroSheild   =  new HeroSheild(this.hero.x  - 100 , this.hero.y - 100, "/game/sheild.png", false, 1, 0, false); 
 	// it is not sprite but will have the update function so can be called by the generic framework
 	this.scoreBoard   = new ScoreBoard();		
